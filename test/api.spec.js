@@ -92,6 +92,29 @@ describe('API', () => {
       });
       verified.should.eql(true);
     });
+    it('should verify using "safeSecretKeyScalarBytes"', async () => {
+      //h2s('60e55110f76883a13d030b2f6bd11883422d5abde717569fc0731f51237169fc')
+      const header = new Uint8Array();
+      const messages = [new TextEncoder().encode('msg')];
+      const safeSecretKeyScalarBytes = h2b(
+        '60e55110f76883a13d030b2f6bd11883422d5abde717569fc0731f51237169fc');
+      // eslint-disable-next-line max-len
+      const publicKey = h2b('a820f230f6ae38503b86c70dc50b61c58a77e45c39ab25c0652bbaa8fa136f2851bd4781c9dcde39fc9d1d52c9e60268061e7d7632171d91aa8d460acee0e96f1e7c4cfb12d3ff9ab5d5dc91c277db75c845d649ef3c4f63aebc364cd55ded0c');
+      const signature = await bbs.sign({
+        safeSecretKeyScalarBytes,
+        header,
+        messages,
+        ciphersuite
+      });
+      const verified = await bbs.verifySignature({
+        publicKey,
+        signature,
+        header,
+        messages,
+        ciphersuite
+      });
+      verified.should.eql(true);
+    });
     it('should pass a test vector', async () => {
       const {parameters} = BLS12381_SHA256_TVS.fixtures.find(
         ({name, operation}) => operation === 'Verify' &&
@@ -232,3 +255,11 @@ describe('API', () => {
     });
   });
 });
+
+// hex => bytes
+function h2b(hex) {
+  if(hex.length === 0) {
+    return new Uint8Array();
+  }
+  return Uint8Array.from(hex.match(/.{1,2}/g).map(h => parseInt(h, 16)));
+}
