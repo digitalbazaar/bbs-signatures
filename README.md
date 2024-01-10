@@ -66,8 +66,9 @@ const {secretKey, publicKey} = await bbs.generateKeyPair({
 });
 // `header`
 const header = new Uint8Array();
-// N-many `messages`
-const messages = [new Uint8Array()];
+// N-many `messages`, each is a `Uint8Array`, use `TextEncoder` to
+// express strings as UTF-8 bytes
+const messages = [new TextEncoder().encode('some message')];
 // `signature` is a `Uint8Array`
 const signature = await bbs.sign({secretKey, publicKey, header, messages});
 ```
