@@ -1,9 +1,9 @@
-# EcdsaMultikey Key Pair Library for Linked Data _(@digitalbazaar/ecdsa-multikey)_
+# BBS Signatures _(@digitalbazaar/bbs-signatures)_
 
-[![Node.js CI](https://github.com/digitalbazaar/ecdsa-multikey/workflows/Node.js%20CI/badge.svg)](https://github.com/digitalbazaar/ecdsa-multikey/actions?query=workflow%3A%22Node.js+CI%22)
-[![NPM Version](https://img.shields.io/npm/v/@digitalbazaar/ecdsa-multikey.svg)](https://npm.im/@digitalbazaar/ecdsa-multikey)
+[![Node.js CI](https://github.com/digitalbazaar/bbs-signatures/workflows/Node.js%20CI/badge.svg)](https://github.com/digitalbazaar/bbs-signatures/actions?query=workflow%3A%22Node.js+CI%22)
+[![NPM Version](https://img.shields.io/npm/v/@digitalbazaar/bbs-signatures.svg)](https://npm.im/@digitalbazaar/bbs-signatures)
 
-> Javascript library for generating and working with EcdsaMultikey key pairs.
+> A JavaScript BBS Signatures Implementation
 
 ## Table of Contents
 
@@ -17,15 +17,9 @@
 
 ## Background
 
-For use with:
-
-* [`@digitalbazaar/ecdsa-2019-cryptosuite`](https://github.com/digitalbazaar/ecdsa-2019-cryptosuite) `^1.0.0`
-  crypto suite (with [`jsonld-signatures`](https://github.com/digitalbazaar/jsonld-signatures) `^11.0.0`)
-* [`@digitalbazaar/data-integrity`](https://github.com/digitalbazaar/data-integrity) `^1.0.0`
-
 See also (related specs):
 
-* [Verifiable Credential Data Integrity](https://w3c.github.io/vc-data-integrity/)
+* [BBS Signatures RFC](https://www.ietf.org/archive/id/draft-irtf-cfrg-bbs-signatures-05.html)
 
 ## Security
 
@@ -34,13 +28,13 @@ your system will largely depend on your design decisions.
 
 ## Install
 
-- Node.js 16+ is required.
+- Node.js 18+ is required.
 
 To install locally (for development):
 
 ```
-git clone https://github.com/digitalbazaar/ecdsa-multikey.git
-cd ecdsa-multikey
+git clone https://github.com/digitalbazaar/bbs-signatures.git
+cd bbs-signatures
 npm install
 ```
 
@@ -48,91 +42,81 @@ npm install
 
 ### Generating a new public/secret key pair
 
-To generate a new public/secret key pair:
-
-* `{string} [curve]` \[Required\] ECDSA curve used to generate the key:
-  \['P-256', 'P-384', 'P-521'\].
-* `{string} [id]` \[Optional\] ID for the generated key.
-* `{string} [controller]` \[Optional\] Controller URI or DID to initialize the
-  generated key. (This will be used to generate `id` if it is not explicitly defined.)
+To generate a new public/secret BLS12-381 key pair for use with BBS signatures:
 
 ```js
-import * as EcdsaMultikey from '@digitalbazaar/ecdsa-multikey';
+import * as bbs from '@digitalbazaar/bbs-signatures';
 
-const keyPair = await EcdsaMultikey.generate({curve: 'P-384'});
+const keyPair = await bbs.generateKeyPair();
+// includes `secretKey` and `publicKey` keys, each is a `Uint8Array`
 ```
 
-### Importing a key pair from storage
+### Creating a BBS signature
 
-To create an instance of a public/secret key pair from data imported from
-storage, use `.from()`:
-
-```js
-const serializedKeyPair = { ... };
-
-const keyPair = await EcdsaMultikey.from(serializedKeyPair);
-````
-
-### Exporting the public key only
-
-To export just the public key of a pair:
+Sign an optional `header` and an array of `messages` using BBS.
 
 ```js
-await keyPair.export({publicKey: true});
-// ->
-{
-  type: 'Multikey',
-  id: 'did:example:1234#zDnaeSMnptAKpH4AD41vTkwzjznW7yNetdRh9FJn8bJsbsdbw',
-  controller: 'did:example:1234',
-  publicKeyMultibase: 'zDnaeSMnptAKpH4AD41vTkwzjznW7yNetdRh9FJn8bJsbsdbw'
-}
+import * as bbs from '@digitalbazaar/bbs-signatures';
+
+const keyPair = await bbs.generateKeyPair();
+// `header`
+const header = new Uint8Array();
+// N-many `messages`
+const messages = [new Uint8Array()];
+// `signature` is a `Uint8Array`
+const signature = await bbs.sign({keyPair, header, messages});
 ```
 
-### Exporting the full public-secret key pair
+### Verifying a BBS signature
 
-To export the full key pair, including secret key (warning: this should be a
-carefully considered operation, best left to dedicated Key Management Systems):
+Verify a full BBS signature. This verification method is less likely to be
+used than `verifyProof()` as holders of signatures are expected to derive
+proofs for verification by verifiers.
 
 ```js
-await keyPair.export({publicKey: true, secretKey: true});
-// ->
-{
-  type: 'Multikey',
-  id: 'did:example:1234#zDnaeSMnptAKpH4AD41vTkwzjznW7yNetdRh9FJn8bJsbsdbw',
-  controller: 'did:example:1234',
-  publicKeyMultibase: 'zDnaeSMnptAKpH4AD41vTkwzjznW7yNetdRh9FJn8bJsbsdbw',
-  secretKeyMultibase: 'z42twirSb1PULt5Sg6gjgNMsdiLycu6fbA83aX1vVb8e3ncP'
-}
+import * as bbs from '@digitalbazaar/bbs-signatures';
+
+// pass original signer's `publicKey`, `signature`, `header`, and `messages`
+const {publicKey} = keyPair;
+// `verified` is a boolean
+const verified = await bbs.verifySignature({
+  publicKey, signature, header, messages
+});
 ```
 
-### Creating a signer function
+### Creating a BBS proof
 
-In order to perform a cryptographic signature, you need to create a `sign`
-function, and then invoke it.
+Derive a proof from a BBS signature as a holder / prover.
 
 ```js
-const keyPair = EcdsaMultikey.generate({curve: 'P-256'});
+import * as bbs from '@digitalbazaar/bbs-signatures';
 
-const {sign} = keyPair.signer();
-
-// data is a Uint8Array of bytes
-const data = (new TextEncoder()).encode('test data goes here');
-// Signing also outputs a Uint8Array, which you can serialize to text etc.
-const signature = await sign({data});
+// pass original signer's `publicKey`, `signature`, `header`, and `messages`
+// as well as a custom `presentationHeader` and any `disclosedMessageIndexes`
+const {publicKey} = keyPair;
+// `proof`` is a boolean
+const proof = await bbs.deriveProof({
+  publicKey, signature, header, messages,
+  presentationHeader, disclosedMessageIndexes
+});
 ```
 
-### Creating a verifier function
+### Verifying a BBS proof
 
-In order to verify a cryptographic signature, you need to create a `verify`
-function, and then invoke it (passing it the data to verify, and the signature).
+Verify a proof from a holder / prover.
 
 ```js
-const keyPair = EcdsaMultikey.generate({curve: 'P-521'});
+import * as bbs from '@digitalbazaar/bbs-signatures';
 
-const {verify} = keyPair.verifier();
-
-const valid = await verify({data, signature});
-// true
+// pass `proof`, original signer's `publicKey` and`header`
+// as well as holder's custom `presentationHeader`, `disclosedMessages`, and
+// `disclosedMessageIndexes`
+const {publicKey} = keyPair;
+// `proof`` is a boolean
+const verified = await bbs.verifyProof({
+  publicKey, proof, header,
+  presentationHeader, disclosedMessages, disclosedMessageIndexes
+});
 ```
 
 ## Contribute
@@ -151,4 +135,4 @@ Digital Bazaar: support@digitalbazaar.com
 
 ## License
 
-[New BSD License (3-clause)](LICENSE) © 2023 Digital Bazaar
+[New BSD License (3-clause)](LICENSE) © 2024 Digital Bazaar
