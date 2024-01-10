@@ -47,8 +47,11 @@ To generate a new public/secret BLS12-381 key pair for use with BBS signatures:
 ```js
 import * as bbs from '@digitalbazaar/bbs-signatures';
 
-const keyPair = await bbs.generateKeyPair();
+const {secretKey, publicKey} = await bbs.generateKeyPair({
+  ciphersuite: 'BLS12-381-SHA-256'
+});
 // includes `secretKey` and `publicKey` keys, each is a `Uint8Array`
+// other ciphersuite choice is: 'BLS12-381-SHAKE-256'
 ```
 
 ### Creating a BBS signature
@@ -58,13 +61,15 @@ Sign an optional `header` and an array of `messages` using BBS.
 ```js
 import * as bbs from '@digitalbazaar/bbs-signatures';
 
-const keyPair = await bbs.generateKeyPair();
+const {secretKey, publicKey} = await bbs.generateKeyPair({
+  ciphersuite: 'BLS12-381-SHA-256'
+});
 // `header`
 const header = new Uint8Array();
 // N-many `messages`
 const messages = [new Uint8Array()];
 // `signature` is a `Uint8Array`
-const signature = await bbs.sign({keyPair, header, messages});
+const signature = await bbs.sign({secretKey, publicKey, header, messages});
 ```
 
 ### Verifying a BBS signature
@@ -77,11 +82,11 @@ proofs for verification by verifiers.
 import * as bbs from '@digitalbazaar/bbs-signatures';
 
 // pass original signer's `publicKey`, `signature`, `header`, and `messages`
-const {publicKey} = keyPair;
-// `verified` is a boolean
 const verified = await bbs.verifySignature({
-  publicKey, signature, header, messages
+  publicKey, signature, header, messages,
+  ciphersuite: 'BLS12-381-SHA-256'
 });
+// `verified` is a boolean
 ```
 
 ### Creating a BBS proof
@@ -93,12 +98,12 @@ import * as bbs from '@digitalbazaar/bbs-signatures';
 
 // pass original signer's `publicKey`, `signature`, `header`, and `messages`
 // as well as a custom `presentationHeader` and any `disclosedMessageIndexes`
-const {publicKey} = keyPair;
-// `proof`` is a boolean
 const proof = await bbs.deriveProof({
   publicKey, signature, header, messages,
-  presentationHeader, disclosedMessageIndexes
+  presentationHeader, disclosedMessageIndexes,
+  ciphersuite: 'BLS12-381-SHA-256'
 });
+// `proof` is a `Uint8Array` containing a BBS proof
 ```
 
 ### Verifying a BBS proof
@@ -111,12 +116,12 @@ import * as bbs from '@digitalbazaar/bbs-signatures';
 // pass `proof`, original signer's `publicKey` and`header`
 // as well as holder's custom `presentationHeader`, `disclosedMessages`, and
 // `disclosedMessageIndexes`
-const {publicKey} = keyPair;
-// `proof`` is a boolean
 const verified = await bbs.verifyProof({
   publicKey, proof, header,
-  presentationHeader, disclosedMessages, disclosedMessageIndexes
+  presentationHeader, disclosedMessages, disclosedMessageIndexes,
+  ciphersuite: 'BLS12-381-SHA-256'
 });
+// `verified` is a boolean
 ```
 
 ## Contribute
