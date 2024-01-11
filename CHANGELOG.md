@@ -1,5 +1,11 @@
 # @digitalbazaar/bbs-signatures ChangeLog
 
+## 2.1.0 - 2024-01-dd
+
+### Added
+- Add `secretKeyToPublicKey` helper utility to convert a `secretKey`
+  to a `publicKey`.
+
 ## 2.0.0 - 2024-01-10
 
 ### Changed
