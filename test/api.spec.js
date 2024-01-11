@@ -54,6 +54,21 @@ describe('API', () => {
       signature.should.be.a('Uint8Array');
       signature.length.should.eql(80);
     });
+    it('should pass using `secretKeyToPublicKey`', async () => {
+      const {secretKey} = await bbs.generateKeyPair({ciphersuite});
+      const publicKey = await bbs.secretKeyToPublicKey({
+        secretKey, ciphersuite
+      });
+      const signature = await bbs.sign({
+        secretKey,
+        publicKey,
+        header: new Uint8Array(),
+        messages: [new Uint8Array()],
+        ciphersuite
+      });
+      signature.should.be.a('Uint8Array');
+      signature.length.should.eql(80);
+    });
     it('should fail when "secretKey" is missing', async () => {
       const {publicKey} = await bbs.generateKeyPair({ciphersuite});
 
