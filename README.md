@@ -52,6 +52,8 @@ const {secretKey, publicKey} = await bbs.generateKeyPair({
   // same as using the constant: bbs.CIPHERSUITES.BLS12381_SHA256
 });
 // includes `secretKey` and `publicKey` keys, each is a `Uint8Array`
+// `secretKey` is big-endian-encoded scalar
+// `publicKey` is compressed (x, y) coordinates of a BLS12-381 G2 point
 // other ciphersuite choice is: 'BLS12-381-SHAKE-256'
 ```
 
