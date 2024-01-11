@@ -92,16 +92,15 @@ describe('API', () => {
       });
       verified.should.eql(true);
     });
-    it('should verify using "safeSecretKeyScalarBytes"', async () => {
-      //h2s('60e55110f76883a13d030b2f6bd11883422d5abde717569fc0731f51237169fc')
+    it('should verify using sign() w/ existing secret key', async () => {
       const header = new Uint8Array();
       const messages = [new TextEncoder().encode('msg')];
-      const safeSecretKeyScalarBytes = h2b(
+      const secretKey = h2b(
         '60e55110f76883a13d030b2f6bd11883422d5abde717569fc0731f51237169fc');
       // eslint-disable-next-line max-len
       const publicKey = h2b('a820f230f6ae38503b86c70dc50b61c58a77e45c39ab25c0652bbaa8fa136f2851bd4781c9dcde39fc9d1d52c9e60268061e7d7632171d91aa8d460acee0e96f1e7c4cfb12d3ff9ab5d5dc91c277db75c845d649ef3c4f63aebc364cd55ded0c');
       const signature = await bbs.sign({
-        safeSecretKeyScalarBytes,
+        secretKey,
         header,
         messages,
         ciphersuite
