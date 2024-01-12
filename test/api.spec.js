@@ -59,6 +59,7 @@ describe('API', () => {
       const publicKey = await bbs.secretKeyToPublicKey({
         secretKey, ciphersuite
       });
+      publicKey.should.be.a('Uint8Array');
       const signature = await bbs.sign({
         secretKey,
         publicKey,
