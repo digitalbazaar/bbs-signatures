@@ -1,5 +1,12 @@
 # @digitalbazaar/bbs-signatures ChangeLog
 
+## 2.2.0 - 2024-03-dd
+
+### Added
+- Add `ProofGenWithPseudonym`, `ProofVerifyWithPseudonym`, and enable
+  `Sign` and `Verify` to take `pid` optional parameter to require the
+  use of a pseudonym in proof generation and verification.
+
 ## 2.1.0 - 2024-01-11
 
 ### Added
