@@ -1,15 +1,16 @@
 /*!
  * Copyright (c) 2023-2024 Digital Bazaar, Inc. All rights reserved.
  */
+import {
+  BlindSign, Commit
+} from '../lib/bbs/blind/interface.js';
 import chai from 'chai';
 import {CIPHERSUITES_TEST_VECTORS} from './blind-test-vectors.js';
-import {
-  Commit
-} from '../lib/bbs/blind/interface.js';
+import {mocked_calculate_random_scalars} from '../lib/bbs/util.js';
 chai.should();
 
 const OPERATIONS = {
-  Commit
+  BlindSign, Commit, CommitAndBlindSign
 };
 
 describe('Blind BBS test vectors', () => {
@@ -35,3 +36,33 @@ describe('Blind BBS test vectors', () => {
     });
   }
 });
+
+// runs `Commit` and then `BlindSign` on the result
+async function CommitAndBlindSign({
+  SK, PK,
+  commitment_with_proof,
+  header = new Uint8Array(),
+  ph = new Uint8Array(),
+  messages = [],
+  committed_messages,
+  secret_prover_blind,
+  signer_blind,
+  ciphersuite,
+  commit_mocked_random_scalars_options,
+  sign_mocked_random_scalars_options
+} = {}) {
+  const commitResult = await Commit({
+    committed_messages, ciphersuite,
+    mocked_random_scalars_options: commit_mocked_random_scalars_options
+  });
+  commitResult[0].should.deep.eql(commitment_with_proof);
+  commitResult[1].should.deep.eql(secret_prover_blind);
+  const [test_signer_blind] = await mocked_calculate_random_scalars({
+    ...sign_mocked_random_scalars_options, ciphersuite
+  });
+  test_signer_blind.should.eql(signer_blind);
+  return BlindSign({
+    SK, PK, commitment_with_proof,
+    header, ph, messages, signer_blind, ciphersuite
+  });
+}
