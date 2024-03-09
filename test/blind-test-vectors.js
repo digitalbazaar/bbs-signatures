@@ -94,6 +94,31 @@ BLS12381_SHAKE256.fixtures = [{
     // secret_prover_blind
     h2s('30bd5c9bd2b61c44dd169c92cf28bb607830c56073f10e7a800c857cb05ec249')
   ]
+}, {
+  name: 'Multiple Committed Messages',
+  operation: 'Commit',
+  parameters: {
+    committed_messages: [
+      h2b('5982967821da3c5983496214df36aa5e58de6fa25314af4cf4c00400779f08c3'),
+      h2b('a75d8b634891af92282cc81a675972d1929d3149863c1fc0'),
+      h2b('835889a40744813a892eff9deb1edaeb'),
+      h2b('e1ca9729410dc6ba'),
+      h2b('')
+    ],
+    api_id: TEXT_ENCODER.encode(
+      BLS12381_SHAKE256.ciphersuite.ciphersuite_id + 'BLIND_H2G_HM2S_'),
+    mocked_random_scalars_options: {
+      seed: BLS12381_SHAKE256.mocked_random_scalars_options.seed,
+      dst: TEXT_ENCODER.encode('BBS_BLS12381G1_XOF:SHAKE-256_SSWU_RO_H2G_HM2S_COMMIT_MOCK_RANDOM_SCALARS_DST_'),
+      count: 7
+    }
+  },
+  output: [
+    // commitment_with_proof
+    h2b('a90a9c986623c7df72f1b55f885a7f25070d5b73178f7139fd6e948067e9f748b1cc0d4db3cbb9123a18851714ec9c161b678690dbd0ae67f4bac061bb80824ba208906d581586971c6a32e2a162eddf0ed4a8cc260f2cc9b505fd5ea078d21ae76159866c476cb129ad719511edbac763ec9b34c7943c520f598bacd7775e8345a9b3c2c2490fab27c97f1529ff319b4995ea15ff5e46ec26347d6a6bbf2e4b2a8da145f6afd5444464d86f79cd7df32fcc665b9245e138c752decfb3d507f2024af86b202741bf946e199ac77730a070821d7df69ce563d2d4142572431047dc6b544e4a8280ada8c3c01a2d3f454e4cf1dc293f09e6a5b743f275286ce601f28b1838441265c1c18b4425b8bd3d5c'),
+    // secret_prover_blind
+    h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649')
+  ]
 }];
 /* eslint-enable max-len */
 
@@ -172,6 +197,31 @@ BLS12381_SHA256.fixtures = [{
     h2b('8bd94b05cd4e006145bc974cf5cdcc80e544a8c4624b0a7f6a5509430c79be788be86536b725ea93dd0a035b4ef822631dc4e8c1a02cc212cc9f914ecfab3470901d5d1573e4d03653af76ebf3bd891a226635ac82ee6cc94bc20135471365d2bb278e21eae8e71661ecd3f6301c7ba3'),
     // secret_prover_blind
     h2s('1b6f406b17aaf92dc7deb911c7cae49756a6623b5c385b5ae6214d7e3d9597f7')
+  ]
+}, {
+  name: 'Multiple Committed Messages',
+  operation: 'Commit',
+  parameters: {
+    committed_messages: [
+      h2b('5982967821da3c5983496214df36aa5e58de6fa25314af4cf4c00400779f08c3'),
+      h2b('a75d8b634891af92282cc81a675972d1929d3149863c1fc0'),
+      h2b('835889a40744813a892eff9deb1edaeb'),
+      h2b('e1ca9729410dc6ba'),
+      h2b('')
+    ],
+    api_id: TEXT_ENCODER.encode(
+      BLS12381_SHA256.ciphersuite.ciphersuite_id + 'BLIND_H2G_HM2S_'),
+    mocked_random_scalars_options: {
+      seed: BLS12381_SHA256.mocked_random_scalars_options.seed,
+      dst: TEXT_ENCODER.encode('BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_COMMIT_MOCK_RANDOM_SCALARS_DST_'),
+      count: 7
+    }
+  },
+  output: [
+    // commitment_with_proof
+    h2b('8707ce71651e7fadbdd39cd88e83255629aacd969186eaefe95ea27935ab54af325220bb410af7f4389f85adc630548a02ff284a86147a4fc93da14be0c8f2c8df53b0057f71adee985b3b72bc759c2642187bd6cdc9f9e78f4d44b7fea7cb41563058647bc49614cdbb30b8f88264112e4b9aed8849609ab34eed40a83fa095d7ed156e9f89e7bb64bec73cd02ccd8814aa43b6f46cf2b5684125fbc25c0285aa525dc3aba6f21a597f7b5a424a014c5162983082c2d63ff500fc06b5200423fb647bf67815bb9baf76d5a8ccb665ba120fff68b6fd180f4b4c43fb437d68cff8eeac230a47d331b4a72f124957042e4664bae34f486b5c33d1120eaa676e6e302ed1f79739b75e074baa702beb7939'),
+    // secret_prover_blind
+    h2s('4fba5396baa36b2fde81d46a9b9ee89c425dbc5e1ffd65c20249afb4abd37589')
   ]
 }];
 /* eslint-enable max-len */
