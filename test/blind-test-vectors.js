@@ -119,6 +119,35 @@ BLS12381_SHAKE256.fixtures = [{
     // secret_prover_blind
     h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649')
   ]
+}, {
+  name: 'No Committed Messages, No Signer Messages',
+  operation: 'CommitAndBlindSign',
+  parameters: {
+    SK: BLS12381_SHAKE256.SK,
+    PK: BLS12381_SHAKE256.PK,
+    commitment_with_proof: h2b('95a6f21801b2010a9016c590cd6f0d59682e908a46cdc9856eea2c5000545626fc755c13ce93a71e371b0ae05491326302a8e40b4fc1197d75c46d2114c711d9186e4af0498dab260ae56f81dbc59f7b2a9f4883479ce40e765a32b6481766ed5aeeddecd2decd277460a5e129a22934'),
+    header: h2b('11223344556677889900aabbccddeeff'),
+    messages: [],
+    committed_messages: [],
+    secret_prover_blind: h2s('30bd5c9bd2b61c44dd169c92cf28bb607830c56073f10e7a800c857cb05ec249'),
+    signer_blind: h2s('49541deb67dc42d5509d39548637959bc43e105fff02c780a308c78e0a1e3c7f'),
+    commit_mocked_random_scalars_options: {
+      seed: BLS12381_SHAKE256.mocked_random_scalars_options.seed,
+      dst: TEXT_ENCODER.encode('BBS_BLS12381G1_XOF:SHAKE-256_SSWU_RO_H2G_HM2S_COMMIT_MOCK_RANDOM_SCALARS_DST_'),
+      count: 2
+    },
+    sign_mocked_random_scalars_options: {
+      seed: BLS12381_SHAKE256.mocked_random_scalars_options.seed,
+      dst: TEXT_ENCODER.encode('BBS_BLS12381G1_XOF:SHAKE-256_SSWU_RO_H2G_HM2S_SIGNATURE_MOCK_RANDOM_SCALARS_DST_'),
+      count: 1
+    }
+  },
+  // signature
+  output: h2b('90c93d864fb857dc4290e1cb2f6c82973c2562b4bfb8edb61c2300da84b7d709733024c215acc0e224ee4b64ab5987d0312e84786009cece2aee01884b19c81a592aefb557f025fccdd8c67ca0a5d8c3'),
+  debug: {
+    B: h2b('b34e5cf13d77074c4762d92f98cc6b8c2567c816a2ea792d0f49263b8da314b5493830b78563fdb9e2abcab2a7a3c21f'),
+    domain: h2b('41f87ee87af7a093831d77576c64d41e0d89bcd05ea6c9dd5be25bce3c728c55')
+  }
 }];
 /* eslint-enable max-len */
 
