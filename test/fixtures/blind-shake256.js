@@ -187,5 +187,30 @@ BLS12381_SHAKE256.fixtures = [{
     B: h2b('92c9bd227788c660f82397b7cadbebdcb83bfc4256362605caebd57849ca17371c5dd67af7b763f0c207eb73cd0d9d97'),
     domain: h2b('1561412ed694d0eb532e042ae2098fc999325394317c686ce94a84db29552100')
   }
+}, {
+  name: 'Multiple Prover Committed and Signer Messages',
+  operation: 'CommitAndBlindSign',
+  parameters: {
+    SK: BLS12381_SHAKE256.SK,
+    PK: BLS12381_SHAKE256.PK,
+    commitment_with_proof: h2b('a90a9c986623c7df72f1b55f885a7f25070d5b73178f7139fd6e948067e9f748b1cc0d4db3cbb9123a18851714ec9c161b678690dbd0ae67f4bac061bb80824ba208906d581586971c6a32e2a162eddf0ed4a8cc260f2cc9b505fd5ea078d21ae76159866c476cb129ad719511edbac763ec9b34c7943c520f598bacd7775e8345a9b3c2c2490fab27c97f1529ff319b4995ea15ff5e46ec26347d6a6bbf2e4b2a8da145f6afd5444464d86f79cd7df32fcc665b9245e138c752decfb3d507f2024af86b202741bf946e199ac77730a070821d7df69ce563d2d4142572431047dc6b544e4a8280ada8c3c01a2d3f454e4cf1dc293f09e6a5b743f275286ce601f28b1838441265c1c18b4425b8bd3d5c'),
+    header: h2b('11223344556677889900aabbccddeeff'),
+    messages: MESSAGES.slice(),
+    committed_messages: COMMITTED_MESSAGES.slice(),
+    secret_prover_blind: h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649'),
+    signer_blind: h2s('49541deb67dc42d5509d39548637959bc43e105fff02c780a308c78e0a1e3c7f'),
+    commit_mocked_random_scalars_options: {
+      ...BLS12381_SHAKE256.commit_mocked_random_scalars_options,
+      count: 7
+    },
+    sign_mocked_random_scalars_options:
+      BLS12381_SHAKE256.sign_mocked_random_scalars_options
+  },
+  // signature
+  output: h2b('95ef34d43451fe55d3887c7d32955641dbd13814db0d5d55e63fee1f0d8e2bf5601924eb4e5015e895b5affe96f96d274bfcd2c2c902883cb210f2bfca6b6c50b8e6768cda43000e6db777e2e0961fd9'),
+  debug: {
+    B: h2b('aad174dad5a717f105ef200da94a6a16ee1354f3a0095f082b9b3f621072e438f6889182cfec55d2db07d1b899e96c3d'),
+    domain: h2b('279f17f14e7e3986bb71cf6c8a1018460596e62eea6ed91bb81b9706f4729f95')
+  }
 }];
 /* eslint-enable max-len */
