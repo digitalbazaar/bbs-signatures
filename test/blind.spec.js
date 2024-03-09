@@ -57,10 +57,12 @@ async function CommitAndBlindSign({
   });
   commitResult[0].should.deep.eql(commitment_with_proof);
   commitResult[1].should.deep.eql(secret_prover_blind);
-  const [test_signer_blind] = await mocked_calculate_random_scalars({
-    ...sign_mocked_random_scalars_options, ciphersuite
-  });
-  test_signer_blind.should.eql(signer_blind);
+  if(signer_blind !== 0n) {
+    const [test_signer_blind] = await mocked_calculate_random_scalars({
+      ...sign_mocked_random_scalars_options, ciphersuite
+    });
+    test_signer_blind.should.eql(signer_blind);
+  }
   return BlindSign({
     SK, PK, commitment_with_proof,
     header, ph, messages, signer_blind, ciphersuite
