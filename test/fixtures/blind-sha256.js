@@ -213,5 +213,30 @@ BLS12381_SHA256.fixtures = [{
     B: h2b('ab6c841535ba75d568e913d716cf2920624044c5cd99cfbebb564d5c0654a9bbc3c458cc3c51349ece6ec40223f7e2a5'),
     domain: h2b('386bb1c7c4d1e3b95686cd66ad21ba8302f9f87290cc800a79c910f0e96dbd02')
   }
+}, {
+  name: 'Multiple Prover Committed and Signer Messages, No Signer Blind',
+  operation: 'CommitAndBlindSign',
+  parameters: {
+    SK: BLS12381_SHA256.SK,
+    PK: BLS12381_SHA256.PK,
+    commitment_with_proof: h2b('8707ce71651e7fadbdd39cd88e83255629aacd969186eaefe95ea27935ab54af325220bb410af7f4389f85adc630548a02ff284a86147a4fc93da14be0c8f2c8df53b0057f71adee985b3b72bc759c2642187bd6cdc9f9e78f4d44b7fea7cb41563058647bc49614cdbb30b8f88264112e4b9aed8849609ab34eed40a83fa095d7ed156e9f89e7bb64bec73cd02ccd8814aa43b6f46cf2b5684125fbc25c0285aa525dc3aba6f21a597f7b5a424a014c5162983082c2d63ff500fc06b5200423fb647bf67815bb9baf76d5a8ccb665ba120fff68b6fd180f4b4c43fb437d68cff8eeac230a47d331b4a72f124957042e4664bae34f486b5c33d1120eaa676e6e302ed1f79739b75e074baa702beb7939'),
+    header: h2b('11223344556677889900aabbccddeeff'),
+    messages: MESSAGES.slice(),
+    committed_messages: COMMITTED_MESSAGES.slice(),
+    secret_prover_blind: h2s('4fba5396baa36b2fde81d46a9b9ee89c425dbc5e1ffd65c20249afb4abd37589'),
+    signer_blind: h2s(''),
+    commit_mocked_random_scalars_options: {
+      ...BLS12381_SHA256.commit_mocked_random_scalars_options,
+      count: 7
+    },
+    sign_mocked_random_scalars_options:
+      BLS12381_SHA256.sign_mocked_random_scalars_options
+  },
+  // signature
+  output: h2b('91902b68ac869d0b250355be499fe555e292759de6cad9c28eec51d3f4bb5f435238636538d347be44a4b33e0edbfd4d1bc5b0082b29eea3b3aed2b718706a8d08ada2fe623279472fa5e4c571c44ebf'),
+  debug: {
+    B: h2b('8444fca0a990ab19c0c7c7cd93ed31406e5dde17c16f1333c2e42284ddfb88e062fed9fd2aa6ae6cc81e6b9a6251fcb6'),
+    domain: h2b('386bb1c7c4d1e3b95686cd66ad21ba8302f9f87290cc800a79c910f0e96dbd02')
+  }
 }];
 /* eslint-enable max-len */
