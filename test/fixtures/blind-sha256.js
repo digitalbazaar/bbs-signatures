@@ -4,6 +4,7 @@
 import {
   COMMITTED_MESSAGES,
   h2b, h2s,
+  MESSAGES,
   TEXT_ENCODER
 } from './common.js';
 import {CIPHERSUITES} from '../../lib/bbs/ciphersuites.js';
@@ -161,6 +162,31 @@ BLS12381_SHA256.fixtures = [{
   debug: {
     B: h2b('85f7a6c2593bb4c1ecf6bd84aa3fe29e4d2c7d59f236523efbad684a25b941ccf9abb83a8531e9badb7bf1bdb433808b'),
     domain: h2b('1a0842369c4a79ed4709bce26963466699fafea687246b1074c91d9002c4bd1a')
+  }
+}, {
+  name: 'No Prover Committed Messages, Multiple Signer Messages',
+  operation: 'CommitAndBlindSign',
+  parameters: {
+    SK: BLS12381_SHA256.SK,
+    PK: BLS12381_SHA256.PK,
+    commitment_with_proof: h2b('8bd94b05cd4e006145bc974cf5cdcc80e544a8c4624b0a7f6a5509430c79be788be86536b725ea93dd0a035b4ef822631dc4e8c1a02cc212cc9f914ecfab3470901d5d1573e4d03653af76ebf3bd891a226635ac82ee6cc94bc20135471365d2bb278e21eae8e71661ecd3f6301c7ba3'),
+    header: h2b('11223344556677889900aabbccddeeff'),
+    messages: MESSAGES.slice(),
+    committed_messages: [],
+    secret_prover_blind: h2s('1b6f406b17aaf92dc7deb911c7cae49756a6623b5c385b5ae6214d7e3d9597f7'),
+    signer_blind: h2s('10e75ca49d242390896d9dd943b97ff23b8cb780bf27df185f51b33abaaa94e2'),
+    commit_mocked_random_scalars_options: {
+      ...BLS12381_SHA256.commit_mocked_random_scalars_options,
+      count: 2
+    },
+    sign_mocked_random_scalars_options:
+      BLS12381_SHA256.sign_mocked_random_scalars_options
+  },
+  // signature
+  output: h2b('b3e48d4f916c372e330b3727d14f1543cd5de4285e6c3b90692bc842e0cc1f4eed563726df615fbd77427975222d196664d8733cf38ac4c57efe85a055290cde0cd08680309218db9e04f3299985e814'),
+  debug: {
+    B: h2b('b16f00f40d3a60700f7da8589b876ad722279de6e6c66dd2681a6855a3d71f2976802972a4e7bcfa88e1f2e44387d9eb'),
+    domain: h2b('69ab8c6eb9481bee9c3cf60dfb9d3f539023e8c6e78c6568d0913ea046752a2b')
   }
 }];
 /* eslint-enable max-len */
