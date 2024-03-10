@@ -275,7 +275,6 @@ BLS12381_SHA256.fixtures = [{
     domain: h2b('160cf879138e86f8f6025c41ec94434432a315c33dc6b90c38f1b21ce101418c')
   }
 }, {
-  skip: true,
   name: 'All Prover Committed Messages and Signer Messages Disclosed',
   operation: 'BlindVerifyAndBlindProofGen',
   parameters: {
@@ -286,15 +285,19 @@ BLS12381_SHA256.fixtures = [{
     messages: MESSAGES.slice(),
     disclosed_indexes: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
     committed_messages: COMMITTED_MESSAGES.slice(),
-    disclosed_committment_indexes: [0, 1, 2, 3, 4],
+    disclosed_commitment_indexes: [0, 1, 2, 3, 4],
     secret_prover_blind: h2s('4fba5396baa36b2fde81d46a9b9ee89c425dbc5e1ffd65c20249afb4abd37589'),
+    signer_blind: h2s('10e75ca49d242390896d9dd943b97ff23b8cb780bf27df185f51b33abaaa94e2'),
     signerBlind: h2s('10e75ca49d242390896d9dd943b97ff23b8cb780bf27df185f51b33abaaa94e2'),
     proof_mocked_random_scalars_options: {
       ...BLS12381_SHA256.proof_mocked_random_scalars_options,
       count: 6
     }
   },
-  // proof
-  output: h2b('8b29fc429ae913cccb71f730fa61fd220a8ce673c6eb704106783b7e00a5fd5eb43fd06e9e76b068ab5ca6da93c0201b883bd8caf5ab4af7b3487f50c68c40a310ff3187be9eef536456ac11ca69c6bc43a96307633ee796ddb32346bb47018391f41e1c03cda63ebd5b112950aaa38b808986492873ad40cecf3b8ca9846837da824bfafd62bb8aea56938b653c7bb76b48c87dd7c7a1627d17281a4ba5a403df760ba8dc8599d383960f63a107618e5c77e27c61832dde296888c21e1acb9c6712f37dc916b91dcec2ead637eb7c926c506ddbddf2753c47b1718bc5fa49a3c1f094502b6b119e71fa0632cf64819f6ea38de039179cf6b168deb28f8792266b22d4e2403e7c8dccb23bc95a160e0f1d100fffd917533ac135507a55889223ec03952e420637681ff74d30b2e2246a')
+  output: {
+    proof: h2b('8b29fc429ae913cccb71f730fa61fd220a8ce673c6eb704106783b7e00a5fd5eb43fd06e9e76b068ab5ca6da93c0201b883bd8caf5ab4af7b3487f50c68c40a310ff3187be9eef536456ac11ca69c6bc43a96307633ee796ddb32346bb47018391f41e1c03cda63ebd5b112950aaa38b808986492873ad40cecf3b8ca9846837da824bfafd62bb8aea56938b653c7bb76b48c87dd7c7a1627d17281a4ba5a403df760ba8dc8599d383960f63a107618e5c77e27c61832dde296888c21e1acb9c6712f37dc916b91dcec2ead637eb7c926c506ddbddf2753c47b1718bc5fa49a3c1f094502b6b119e71fa0632cf64819f6ea38de039179cf6b168deb28f8792266b22d4e2403e7c8dccb23bc95a160e0f1d100fffd917533ac135507a55889223ec03952e420637681ff74d30b2e2246a'),
+    disclosed_messages: COMMITTED_MESSAGES.concat(MESSAGES),
+    disclosed_indexes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  }
 }];
 /* eslint-enable max-len */
