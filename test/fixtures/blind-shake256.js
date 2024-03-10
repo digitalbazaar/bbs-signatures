@@ -321,5 +321,153 @@ BLS12381_SHAKE256.fixtures = [{
     messages: COMMITTED_MESSAGES.concat(MESSAGES),
     disclosed_indexes: [1, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
   }
+}, {
+  name: 'All Prover Committed Messages and Half Signer Messages Disclosed',
+  operation: 'BlindVerifyAndBlindProofGen',
+  parameters: {
+    PK: BLS12381_SHAKE256.PK,
+    signature: h2b('95ef34d43451fe55d3887c7d32955641dbd13814db0d5d55e63fee1f0d8e2bf5601924eb4e5015e895b5affe96f96d274bfcd2c2c902883cb210f2bfca6b6c50b8e6768cda43000e6db777e2e0961fd9'),
+    header: h2b('11223344556677889900aabbccddeeff'),
+    ph: h2b('bed231d880675ed101ead304512e043ade9958dd0241ea70b4b3957fba941501'),
+    messages: MESSAGES.slice(),
+    disclosed_indexes: [0, 2, 4, 6, 8],
+    committed_messages: COMMITTED_MESSAGES.slice(),
+    disclosed_commitment_indexes: [0, 1, 2, 3, 4],
+    secret_prover_blind: h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649'),
+    signer_blind: h2s('49541deb67dc42d5509d39548637959bc43e105fff02c780a308c78e0a1e3c7f'),
+    proof_mocked_random_scalars_options: {
+      ...BLS12381_SHAKE256.proof_mocked_random_scalars_options,
+      count: 11
+    }
+  },
+  output: {
+    proof: h2b('a6056ca76a8d342646fe509aff0a0a9a473d1dd9a740325dcbcb8c2391e27c41fae3560e68014c258847cdfb825ffbc08b4dd4f6dac26e245243e77e0450a9f57b5c2a26201e628f477307e4b1ba46239b5b37789e805f4494f0a79eb58a4175b1ced5d5f5b401169891c734feb00829f62d575131114d5deac4c293134fad7f9485497935db52da96694e61b4498634723fb71bbdfb3bcb922474dadc780ccf8370f601f2313e2e133e480a397d715c262ac48aa3a5ea18c8fbe37269061ddeb5fea27583a19e8547468bf275785e5261d84cf2442fedf89ed8ab4323f6e10e337521794e056ff7e9ca417da7b18f5319e99832031eb46f74215e520190995041738445b92e42cd44eea874a9101a47477745473d4d01e259183a8b7211083d9dfa557c6ab12266982176fd94c0859d53eca062406ce741ac9ef29d79a4da7bad78208e70eefc7c1c5f01a862095c21450fdaa0b68bf5748c589612721fd7b183b0514fa72afa0a814ac4838b50a4bb6486078f7c1f289951d3e09f5970496a5d2d0cd3c92d2751f3b661bc0a7a9682441c2b29a667443cee0cca618c0df1f763c2e7b5eb622c2ce72db1cabcbb055d45c33cee4b2b0e084938f8a44341dec62aa4e673c5c0b21dc30cc97a925a6dea'),
+    messages: COMMITTED_MESSAGES.concat(MESSAGES),
+    disclosed_indexes: [1, 2, 3, 4, 5, 6, 8, 10, 12, 14]
+  }
+}, {
+  name: 'Half Prover Committed Messages and Half Signer Messages',
+  operation: 'BlindVerifyAndBlindProofGen',
+  parameters: {
+    PK: BLS12381_SHAKE256.PK,
+    signature: h2b('95ef34d43451fe55d3887c7d32955641dbd13814db0d5d55e63fee1f0d8e2bf5601924eb4e5015e895b5affe96f96d274bfcd2c2c902883cb210f2bfca6b6c50b8e6768cda43000e6db777e2e0961fd9'),
+    header: h2b('11223344556677889900aabbccddeeff'),
+    ph: h2b('bed231d880675ed101ead304512e043ade9958dd0241ea70b4b3957fba941501'),
+    messages: MESSAGES.slice(),
+    disclosed_indexes: [0, 2, 4, 6, 8],
+    committed_messages: COMMITTED_MESSAGES.slice(),
+    disclosed_commitment_indexes: [0, 2, 4],
+    secret_prover_blind: h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649'),
+    signer_blind: h2s('49541deb67dc42d5509d39548637959bc43e105fff02c780a308c78e0a1e3c7f'),
+    proof_mocked_random_scalars_options: {
+      ...BLS12381_SHAKE256.proof_mocked_random_scalars_options,
+      count: 13
+    }
+  },
+  output: {
+    proof: h2b('a96a052121e1f2782cfb286fa1652c18cf92bcf9d27da34c6e68e97ca750b4e9acc1706e7e990c3c0cdef9b7127f7f4399112948cd46ff9cb8644bd7eef9a42fc3738685044dcc36a2e512eb6931df951616a73da6647ca972bd9d975eaeb478915d70529fbddd042e0c355bef5854d05f0a6741acf8a92711baf1b62218149df20f1eb98ba7f7f797697c8c33356db12c5765eb955a5aa9c99171483921abad20f0f12e327122e50fba43436094e7216ecb0208be6b8b9db6e87421e80950db0fd2f844d165279e1f3f474a23bc81d613508bcfab50307ac704073dfe2aca37bc6e56368b39147e4f58f3f837cac4b45512551eed47d3351751a6891fb9f615c68218c4cc2e205032f29373efa4f12324283e8c4ab31787d478df1e6754bb8eb60520a3b7b505669f964fa38db5262811a7bbffec086b03520c4bec622a59fd36adfb2f55188f221361eb50d5f01f8f71e2129d60fc1ac23cc1cd44a607fd252d0e45610271c400a39932ffcf8be8f34975398e584f36e1152d8e3f9422f3201b32a18cd13fe3871bdc5a81c557a0d2586592f0578714223aabd0bcfd975f55cfa4fdfb7418966654b91abff11ab96615e883ec30b4b632c3a350cd69a8c6326cce61547267d6410757bfb323c0a0833ce279e939a7f381c91738b3743b60b3800c1aba91e7e8d395539574f8e8301d459fbe79e7c51693a959a1de996941a9fb8f3810452adc9221582092353902ca'),
+    messages: COMMITTED_MESSAGES.concat(MESSAGES),
+    disclosed_indexes: [1, 3, 5, 6, 8, 10, 12, 14]
+  }
+}, {
+  name: 'No Prover Committed Messages and Half Signer Messages Disclosed',
+  operation: 'BlindVerifyAndBlindProofGen',
+  parameters: {
+    PK: BLS12381_SHAKE256.PK,
+    signature: h2b('95ef34d43451fe55d3887c7d32955641dbd13814db0d5d55e63fee1f0d8e2bf5601924eb4e5015e895b5affe96f96d274bfcd2c2c902883cb210f2bfca6b6c50b8e6768cda43000e6db777e2e0961fd9'),
+    header: h2b('11223344556677889900aabbccddeeff'),
+    ph: h2b('bed231d880675ed101ead304512e043ade9958dd0241ea70b4b3957fba941501'),
+    messages: MESSAGES.slice(),
+    disclosed_indexes: [0, 2, 4, 6, 8],
+    committed_messages: COMMITTED_MESSAGES.slice(),
+    disclosed_commitment_indexes: [],
+    secret_prover_blind: h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649'),
+    signer_blind: h2s('49541deb67dc42d5509d39548637959bc43e105fff02c780a308c78e0a1e3c7f'),
+    proof_mocked_random_scalars_options: {
+      ...BLS12381_SHAKE256.proof_mocked_random_scalars_options,
+      count: 16
+    }
+  },
+  output: {
+    proof: h2b('a46cea8d9d0f919fdc86ca3dd1ac8b2a3e2378e284ba821202cd8de28d07cf961025b3e40ea6c04a8b40ce24254638c283966b37e6d484324d664fd4b7a0902e6183f0785933d6a169a9a2317d36f5e46eaceb1ea1aa8217a8814e17109880758e42a7ec9ce182a1cdfcc25f77e5731ef62538316488e74783bbd4b2fb9670da9d65b56385bb5386795529447e0263f331fc893fd155f22d61152e20d3b61ff16b31db1e9061022f6571a677cb0bccb56d0bb7df15cbc1bfdcb096035766d120fdeff44b253cf5eca13727e1e022b0a37120ab12381a0870d890d682dea4a4dba263cb80f19cb993febcf53865709548728d35b5e7ee27e55ee188d6e8d17a3c846f9e1c56ed42e9af450d73e7ef3826411062fd0fd2496acd5961ed94136691d8782f534201c741bc4d56317825222013638dce35ab399da8f2f5bc0a40e43a79348483d7d1b92b95277687ea25a53f17c3fca6cb30ac6d0e711c89c36f2a6034d6a2a12124e6743c88da53fa46483c37672c7161cf6273bd0fd2c1226f5b96a8e5572b4b7974edd4182a96708a01a05eeae79b84cf79bed7b01c22a32a2ad38fe92cb8eca55cec5d75f9ee876a2c0f2982f0a47bbfabd68627892687bb87a5f7bbcb2819d4439f93439e2aa1191a5643ed031197c66bcc1beb5d9dc1fb24f5f452c3f97900bd42194f198c62b8caa54173dd5a76260ae41c4aca2cca8430874e575cbba47d718300f0ef7bc4676553508938f9e4cab05889a7948f364a91c351f3796f5bfa8bc36cd46d040823c33164fb33187ebcf86f20af8ba7d75cf558c302e977d86d4485492f14c06198ee784a9510fe499cf516bd1c96e0ad60a5ad07fd5bdcdcb97a1bcec2ab951a56eff6'),
+    messages: COMMITTED_MESSAGES.concat(MESSAGES),
+    disclosed_indexes: [6, 8, 10, 12, 14]
+  }
+}, {
+  name: 'Half Prover Committed Messages and No Signer Messages Disclosed',
+  operation: 'BlindVerifyAndBlindProofGen',
+  parameters: {
+    PK: BLS12381_SHAKE256.PK,
+    signature: h2b('95ef34d43451fe55d3887c7d32955641dbd13814db0d5d55e63fee1f0d8e2bf5601924eb4e5015e895b5affe96f96d274bfcd2c2c902883cb210f2bfca6b6c50b8e6768cda43000e6db777e2e0961fd9'),
+    header: h2b('11223344556677889900aabbccddeeff'),
+    ph: h2b('bed231d880675ed101ead304512e043ade9958dd0241ea70b4b3957fba941501'),
+    messages: MESSAGES.slice(),
+    disclosed_indexes: [],
+    committed_messages: COMMITTED_MESSAGES.slice(),
+    disclosed_commitment_indexes: [0, 2, 4],
+    secret_prover_blind: h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649'),
+    signer_blind: h2s('49541deb67dc42d5509d39548637959bc43e105fff02c780a308c78e0a1e3c7f'),
+    proof_mocked_random_scalars_options: {
+      ...BLS12381_SHAKE256.proof_mocked_random_scalars_options,
+      count: 18
+    }
+  },
+  output: {
+    proof: h2b('b5b84e7a44fe9c864d7aefa086af221b5635c08c91e07d51c735dec90b13a7b8377083f3fd726d22eafe2dcb89cc02b192a874481a1aa7858118cdbd7c7cba094f761cbe28f4b81c8cda6dc04cf4c4cfff481b29fc2443cb1c7ce94958de6a5097a3e15b348fb6bb89db4ce5a54281163f71e2dd5cf7b09e1d1b0474c54ac24f108293cabf24d6d3c85ffaae51cb28d322018c6f816001ad881c892246567d9e80bfbc94e2bb706654029572d10ab58f408f459c2b3d626f211b9af6cf6dff3b1bdf9c3e9258a8d79b447e30836c6f3a10c4ff96e5229acfc0c01be5ec60cffcd9b183eb27e167f7ef55c116af163f64203d8a812616a47533d0142c1fc156f253c198bd2fb31c024c24cf963b4ef8a72685c0e60fcae9a384482cf76b2bdb32cfff3e0397ee4574fda20335e7cc21b56ca46db97020bdae7f9e1e3f95b1ec0a1604eccf9d1140f07229bd1ad40db6d9504e94bc801457ddbc77a0f1c2f13896e54ab4e8542b9cbecdfc75733e8e413d6b3532148349e478219bf096ed7dad49ea049d0ffe8209646fb44401a64bf8d003462f2c93cf3a18e56063884e502c450c81c0b838b4d4642928aa741948d19b727188c92eac3642599da6c50becce73fe3d8560750e988ebd8565fd4067074739f226c9e85da6f57eb672f7bf83a2961d15b93a61a1dcf1eae7fc98968964880dc0978753deac2e745089fa56ba89790594f011e344d0e7b9803395d3a98f916c87ab9346a6dfb424a0e7280db4f7ddaecd99d87a2aa59e68afcca68cac2fa516166185a9c59ff1d664ef99c4454da865859284b33165bc7037f830ac61e5db0263a4387c441e92b0b3c9dd38014873d56d665bbba00c11c623634cbb17338822213b5463ec9b15ec5e2f3660d5aeac334e54760bb158ae41d9ce2e5b3d9d6c368b52247b56ced2bbda18ed9649715e1f28d013d277c9f8d55e647544e03a5d'),
+    messages: COMMITTED_MESSAGES.concat(MESSAGES),
+    disclosed_indexes: [1, 3, 5]
+  }
+}, {
+  name: 'No Prover Committed Messages and No Signer Messages Disclosed',
+  operation: 'BlindVerifyAndBlindProofGen',
+  parameters: {
+    PK: BLS12381_SHAKE256.PK,
+    signature: h2b('95ef34d43451fe55d3887c7d32955641dbd13814db0d5d55e63fee1f0d8e2bf5601924eb4e5015e895b5affe96f96d274bfcd2c2c902883cb210f2bfca6b6c50b8e6768cda43000e6db777e2e0961fd9'),
+    header: h2b('11223344556677889900aabbccddeeff'),
+    ph: h2b('bed231d880675ed101ead304512e043ade9958dd0241ea70b4b3957fba941501'),
+    messages: MESSAGES.slice(),
+    disclosed_indexes: [],
+    committed_messages: COMMITTED_MESSAGES.slice(),
+    disclosed_commitment_indexes: [],
+    secret_prover_blind: h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649'),
+    signer_blind: h2s('49541deb67dc42d5509d39548637959bc43e105fff02c780a308c78e0a1e3c7f'),
+    proof_mocked_random_scalars_options: {
+      ...BLS12381_SHAKE256.proof_mocked_random_scalars_options,
+      count: 21
+    }
+  },
+  output: {
+    proof: h2b('8de2b23c71d0cd0a2b1088ac05eca3956789465b81288f6a3d0597c9ca60b9d029f9e0871d8caa23e781752dcaa05a7f8c4b2766be6b4013b8498242faa4837f7a1a34f3642d8bb8424a5061421086846a247eeca1c00c623637f1af27f7cba98b282bdf73f94a2e53cd43d1376756a20a97fb727425bf897ba06d71c9ce347a5b581bd280ed5b9b7940a4bd995722c6685489e5eda2ef3961bc2cf6644f4258de9eba437b25a6341255d781c0dbcf3a24fac5113dcc696b1ea6b3c2a426d1d590312e41656919c66f5d7cfd98ce51106ddff816070342682ac54f3cdeacadf240c0f206fa34cc7f7ffa6247b62bf50e10a7ac678058fd00edb68cd7140d07f336cf10ef0cea7ba6518dc909873edb376e4fe0e9f45945c965096c33a7e5d83584554053fa3182aa24ae6206eb6f29052a3e49d3c26c89a61ef596a133fd9656ec0de0e6f01cdba4cc97ca75ccb1453714de703017cc020493b5b136effd04fd67050b06cb02efe6440a86d041ab59b46480c960ec0fade14a07dcebc84a1364aa50bc8060417cb5217485284b25e19b3026fdf907c9d58a986a3495f22773acbb1d02d0ce686acd47191c220dff271424077a3dc963abf2cec87a2fd380283df0167083493f1e9403c3d063fda6f6e12ddae5d61a7869a2ad0b334cc1d6de7725f027218b8b4cea653dbf11ad253cce670067192d32dba2a09f17149806b8fadc523a20d3004f3065bccc2291fd5c01147168ea88816c7d808358048937b160cdf6c83e837acf1955bb4c313c58eb393ce52e26c5a2c06f3daf40140906f47fc8bb964b45273b359ee0428c3eaa85c46c2a2a3c48c1955ed949a2774c7b4b95ddff6fc70ed20bed5cf86a9bdc4ff7712f5cef5d276dc0198ce4f46e2cc5aec156916e09d1f9f7994f34e8a3b018dc6b685d2925fee720c82d890bcf02626230e04fd15e54e019992173f1bc22c8832952dffa7f1fbfa1efd370e6b69d822ac4dc12737392079d9dea2a3d7dc954a0c926223423620be62f2bac962160ce01cec47321f3f92d1edd0a09356b6420ba8f2ade300ccd65d135eb140e629d65ec2116260c76eec6bf46af46c07768e50ea9'),
+    messages: COMMITTED_MESSAGES.concat(MESSAGES),
+    disclosed_indexes: []
+  }
+}, {
+  // spec test vector seems wrong; test will pass if checks to ensure that the
+  // right number of random_scalars are produced are ignored
+  skip: true,
+  name: 'No Commitment and Half Signer Messages Disclosed',
+  operation: 'BlindVerifyAndBlindProofGen',
+  parameters: {
+    PK: BLS12381_SHAKE256.PK,
+    signature: h2b('8886984283bc433d56ac0f29bab40fb2273d0e7e42f5891c80c357473b504e2aae77658efbb0035cbf32771b7fe8dbbc3509d8e6d2a2a9917304e5a0650e9a6583edb53f82263222a92b41a531784d6e'),
+    header: h2b('11223344556677889900aabbccddeeff'),
+    ph: h2b('bed231d880675ed101ead304512e043ade9958dd0241ea70b4b3957fba941501'),
+    messages: MESSAGES.slice(),
+    disclosed_indexes: [0, 2, 4, 6, 8],
+    committed_messages: [],
+    disclosed_commitment_indexes: [],
+    secret_prover_blind: h2s(''),
+    signer_blind: h2s(''),
+    proof_mocked_random_scalars_options: {
+      ...BLS12381_SHAKE256.proof_mocked_random_scalars_options,
+      // should only be 10 since there are no committed messages?
+      count: 11
+    }
+  },
+  output: {
+    proof: h2b('a46cea8d9d0f919fdc86ca3dd1ac8b2a3e2378e284ba821202cd8de28d07cf961025b3e40ea6c04a8b40ce24254638c283966b37e6d484324d664fd4b7a0902e6183f0785933d6a169a9a2317d36f5e46eaceb1ea1aa8217a8814e17109880758e42a7ec9ce182a1cdfcc25f77e5731ef62538316488e74783bbd4b2fb9670da9d65b56385bb5386795529447e0263f331fc893fd155f22d61152e20d3b61ff16b31db1e9061022f6571a677cb0bccb56d0bb7df15cbc1bfdcb096035766d120fdeff44b253cf5eca13727e1e022b0a37120ab12381a0870d890d682dea4a4dba263cb80f19cb993febcf53865709548728d35b5e7ee27e55ee188d6e8d17a3c846f9e1c56ed42e9af450d73e7ef3826411062fd0fd2496acd5961ed94136691d8782f534201c741bc4d56317825222013638dce35ab399da8f2f5bc0a40e43a79348483d7d1b92b95277687ea25a53f17c3fca6cb30ac6d0e711c89c36f2a6034d6a2a12124e6743c88da53fa46483c37672c7161cf6273bd0fd2c1226f5b96a8e5572b4b7974edd4182a96708a01a05eeae79b84cf79bed7b01c22a32a2ad38fe92cb8eca55cec5d75f9ee876a2c0f2982f0a47bbfabd68627892687bb87a5f7bbcb2819d4439f93439e2aa1191a5643ed031197c66bcc1beb5d9dc1fb24f5f452c3f97900bd42194f198c62b8caa54173dd5a76260ae41c4aca2cca8430874e575cbba47d718300f0ef7bc4676553508938f9e4cab05889a7948f364a91c351f3796f5bfa8bc36cd46d040823c33164fb33187ebcf86f20af8ba7d75cf558c302e977d86d4485492f14c06198ee784a9510fe499cf516bd1c96e0ad60a5ad07fd5bdcdcb97a1bcec2ab951a56eff6'),
+    messages: MESSAGES,
+    disclosed_indexes: [0, 2, 4, 6, 8]
+  }
 }];
 /* eslint-enable max-len */
