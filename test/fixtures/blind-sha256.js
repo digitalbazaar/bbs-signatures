@@ -238,5 +238,25 @@ BLS12381_SHA256.fixtures = [{
     B: h2b('8444fca0a990ab19c0c7c7cd93ed31406e5dde17c16f1333c2e42284ddfb88e062fed9fd2aa6ae6cc81e6b9a6251fcb6'),
     domain: h2b('386bb1c7c4d1e3b95686cd66ad21ba8302f9f87290cc800a79c910f0e96dbd02')
   }
+}, {
+  name: 'No Commitment Signature',
+  operation: 'BlindSign',
+  parameters: {
+    SK: BLS12381_SHA256.SK,
+    PK: BLS12381_SHA256.PK,
+    commitment_with_proof: h2b(''),
+    header: h2b('11223344556677889900aabbccddeeff'),
+    messages: MESSAGES.slice(),
+    committed_messages: [],
+    signer_blind: h2s(''),
+    sign_mocked_random_scalars_options:
+      BLS12381_SHA256.sign_mocked_random_scalars_options
+  },
+  // signature
+  output: h2b('8c21175e0465339fd9b32aece83c43402b8b467baf3085028ecb5669e76e093c0db878bfd4e6121b2b86260fd38f11ca37fc2f16f145ba600b240eb96a40960f7aac7416f2390225e7166863db321b16'),
+  debug: {
+    B: h2b('853ff87eda30796f5997ec3fb9fffcefa78b0b457ce9f2487b8afaa0ffa5098053dc91a65e0b169d97f7b1123e80ab14'),
+    domain: h2b('160cf879138e86f8f6025c41ec94434432a315c33dc6b90c38f1b21ce101418c')
+  }
 }];
 /* eslint-enable max-len */
