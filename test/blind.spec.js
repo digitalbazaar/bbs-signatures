@@ -80,7 +80,7 @@ async function BlindVerifyAndBlindProofGen({
   header = new Uint8Array(),
   ph = new Uint8Array(),
   messages = [], disclosed_indexes,
-  committed_messages, disclosed_committment_indexes,
+  committed_messages, disclosed_commitment_indexes,
   secret_prover_blind,
   signer_blind,
   ciphersuite,
@@ -95,13 +95,13 @@ async function BlindVerifyAndBlindProofGen({
   });
   verifyResult.should.equal(true);
   return BlindProofGen({
-    PK,
+    PK, signature,
     header, ph,
     messages, disclosed_indexes,
-    committed_messages, disclosed_committment_indexes,
+    committed_messages, disclosed_commitment_indexes,
     secret_prover_blind, signer_blind,
     ciphersuite,
-    mocked_calculate_random_scalars: proof_mocked_random_scalars_options
+    mocked_random_scalars_options: proof_mocked_random_scalars_options
   });
 }
 
