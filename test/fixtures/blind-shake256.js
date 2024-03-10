@@ -50,10 +50,14 @@ export const BLS12381_SHAKE256 = {
     seed: h2b('332e313431353932363533353839373933323338343632363433333833323739'),
     dst: TEXT_ENCODER.encode('BBS_BLS12381G1_XOF:SHAKE-256_SSWU_RO_H2G_HM2S_COMMIT_MOCK_RANDOM_SCALARS_DST_')
   },
-  sign_mocked_random_scalars_options: {
+  signature_mocked_random_scalars_options: {
     seed: h2b('332e313431353932363533353839373933323338343632363433333833323739'),
     dst: TEXT_ENCODER.encode('BBS_BLS12381G1_XOF:SHAKE-256_SSWU_RO_H2G_HM2S_SIGNATURE_MOCK_RANDOM_SCALARS_DST_'),
     count: 1
+  },
+  proof_mocked_random_scalars_options: {
+    seed: h2b('332e313431353932363533353839373933323338343632363433333833323739'),
+    dst: TEXT_ENCODER.encode('BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_PROOF_MOCK_RANDOM_SCALARS_DST_')
   },
   random_scalars: [
     h2s('1004262112c3eaa95941b2b0d1311c09c845db0099a50e67eda628ad26b43083'),
@@ -114,7 +118,7 @@ BLS12381_SHAKE256.fixtures = [{
   ]
 }, {
   name: 'No Committed Messages, No Signer Messages',
-  operation: 'CommitAndBlindSign',
+  operation: 'CommitAndBlindSignAndBlindVerify',
   parameters: {
     SK: BLS12381_SHAKE256.SK,
     PK: BLS12381_SHAKE256.PK,
@@ -128,18 +132,20 @@ BLS12381_SHAKE256.fixtures = [{
       ...BLS12381_SHAKE256.commit_mocked_random_scalars_options,
       count: 2
     },
-    sign_mocked_random_scalars_options:
-      BLS12381_SHAKE256.sign_mocked_random_scalars_options
+    signature_mocked_random_scalars_options:
+      BLS12381_SHAKE256.signature_mocked_random_scalars_options
   },
-  // signature
-  output: h2b('90c93d864fb857dc4290e1cb2f6c82973c2562b4bfb8edb61c2300da84b7d709733024c215acc0e224ee4b64ab5987d0312e84786009cece2aee01884b19c81a592aefb557f025fccdd8c67ca0a5d8c3'),
+  output: {
+    signature: h2b('90c93d864fb857dc4290e1cb2f6c82973c2562b4bfb8edb61c2300da84b7d709733024c215acc0e224ee4b64ab5987d0312e84786009cece2aee01884b19c81a592aefb557f025fccdd8c67ca0a5d8c3'),
+    verified: true
+  },
   debug: {
     B: h2b('b34e5cf13d77074c4762d92f98cc6b8c2567c816a2ea792d0f49263b8da314b5493830b78563fdb9e2abcab2a7a3c21f'),
     domain: h2b('41f87ee87af7a093831d77576c64d41e0d89bcd05ea6c9dd5be25bce3c728c55')
   }
 }, {
   name: 'Multiple Prover Committed Messages, No Signer Messages',
-  operation: 'CommitAndBlindSign',
+  operation: 'CommitAndBlindSignAndBlindVerify',
   parameters: {
     SK: BLS12381_SHAKE256.SK,
     PK: BLS12381_SHAKE256.PK,
@@ -153,18 +159,20 @@ BLS12381_SHAKE256.fixtures = [{
       ...BLS12381_SHAKE256.commit_mocked_random_scalars_options,
       count: 7
     },
-    sign_mocked_random_scalars_options:
-      BLS12381_SHAKE256.sign_mocked_random_scalars_options
+    signature_mocked_random_scalars_options:
+      BLS12381_SHAKE256.signature_mocked_random_scalars_options
   },
-  // signature
-  output: h2b('b788904003da89dc167016c3d58a296a145c411df7cc616cfeb79db8d07d5361210ef79599453acc7ee706d80e114be369ca4043e008ea4373e1d3d7bb60c11161d1d6d67ad23a808f0ce52677c724dd'),
+  output: {
+    signature: h2b('b788904003da89dc167016c3d58a296a145c411df7cc616cfeb79db8d07d5361210ef79599453acc7ee706d80e114be369ca4043e008ea4373e1d3d7bb60c11161d1d6d67ad23a808f0ce52677c724dd'),
+    verified: true
+  },
   debug: {
     B: h2b('a537c41dd0dac2de5d21296e32e43f07b27e2ea4c1757247c36fdf7d5541d9e97a483e0b729a8b83638f15fba0cbda29'),
     domain: h2b('2ff95924f5218644c1a5d1722d815146e5b2c195d231421aea572e00527849d2')
   }
 }, {
   name: 'No Prover Committed Messages, Multiple Signer Messages',
-  operation: 'CommitAndBlindSign',
+  operation: 'CommitAndBlindSignAndBlindVerify',
   parameters: {
     SK: BLS12381_SHAKE256.SK,
     PK: BLS12381_SHAKE256.PK,
@@ -178,18 +186,20 @@ BLS12381_SHAKE256.fixtures = [{
       ...BLS12381_SHAKE256.commit_mocked_random_scalars_options,
       count: 2
     },
-    sign_mocked_random_scalars_options:
-      BLS12381_SHAKE256.sign_mocked_random_scalars_options
+    signature_mocked_random_scalars_options:
+      BLS12381_SHAKE256.signature_mocked_random_scalars_options
   },
-  // signature
-  output: h2b('81d03e119cf3a1257a58b288c27132d0ec37e3695eb37ecc064094221baa4f9775483ed57227385659498480f8e92d8d28a9f576cbdc2f2613c68d6184598dc47d9c12cc94654072bd9ee708f72d02b5'),
+  output: {
+    signature: h2b('81d03e119cf3a1257a58b288c27132d0ec37e3695eb37ecc064094221baa4f9775483ed57227385659498480f8e92d8d28a9f576cbdc2f2613c68d6184598dc47d9c12cc94654072bd9ee708f72d02b5'),
+    verified: true
+  },
   debug: {
     B: h2b('92c9bd227788c660f82397b7cadbebdcb83bfc4256362605caebd57849ca17371c5dd67af7b763f0c207eb73cd0d9d97'),
     domain: h2b('1561412ed694d0eb532e042ae2098fc999325394317c686ce94a84db29552100')
   }
 }, {
   name: 'Multiple Prover Committed and Signer Messages',
-  operation: 'CommitAndBlindSign',
+  operation: 'CommitAndBlindSignAndBlindVerify',
   parameters: {
     SK: BLS12381_SHAKE256.SK,
     PK: BLS12381_SHAKE256.PK,
@@ -203,18 +213,20 @@ BLS12381_SHAKE256.fixtures = [{
       ...BLS12381_SHAKE256.commit_mocked_random_scalars_options,
       count: 7
     },
-    sign_mocked_random_scalars_options:
-      BLS12381_SHAKE256.sign_mocked_random_scalars_options
+    signature_mocked_random_scalars_options:
+      BLS12381_SHAKE256.signature_mocked_random_scalars_options
   },
-  // signature
-  output: h2b('95ef34d43451fe55d3887c7d32955641dbd13814db0d5d55e63fee1f0d8e2bf5601924eb4e5015e895b5affe96f96d274bfcd2c2c902883cb210f2bfca6b6c50b8e6768cda43000e6db777e2e0961fd9'),
+  output: {
+    signature: h2b('95ef34d43451fe55d3887c7d32955641dbd13814db0d5d55e63fee1f0d8e2bf5601924eb4e5015e895b5affe96f96d274bfcd2c2c902883cb210f2bfca6b6c50b8e6768cda43000e6db777e2e0961fd9'),
+    verified: true
+  },
   debug: {
     B: h2b('aad174dad5a717f105ef200da94a6a16ee1354f3a0095f082b9b3f621072e438f6889182cfec55d2db07d1b899e96c3d'),
     domain: h2b('279f17f14e7e3986bb71cf6c8a1018460596e62eea6ed91bb81b9706f4729f95')
   }
 }, {
   name: 'Multiple Prover Committed and Signer Messages, No Signer Blind',
-  operation: 'CommitAndBlindSign',
+  operation: 'CommitAndBlindSignAndBlindVerify',
   parameters: {
     SK: BLS12381_SHAKE256.SK,
     PK: BLS12381_SHAKE256.PK,
@@ -228,18 +240,20 @@ BLS12381_SHAKE256.fixtures = [{
       ...BLS12381_SHAKE256.commit_mocked_random_scalars_options,
       count: 7
     },
-    sign_mocked_random_scalars_options:
-      BLS12381_SHAKE256.sign_mocked_random_scalars_options
+    signature_mocked_random_scalars_options:
+      BLS12381_SHAKE256.signature_mocked_random_scalars_options
   },
-  // signature
-  output: h2b('b074112a56caea128a775a9588ab9d2c168fbc40450ecb7b559d6ffb61989896f24783816324ffb55bade3d75c4edfdd03c8effa3dddc82612be454e3c22df986af1e230c136d20cdaa3f4ad2195e39b'),
+  output: {
+    signature: h2b('b074112a56caea128a775a9588ab9d2c168fbc40450ecb7b559d6ffb61989896f24783816324ffb55bade3d75c4edfdd03c8effa3dddc82612be454e3c22df986af1e230c136d20cdaa3f4ad2195e39b'),
+    verified: true
+  },
   debug: {
     B: h2b('81717a1f1c72a748c6a071d58bab0f830169da872d79decde1212ef439f8a153340dcc9e61522f518980d0e584969178'),
     domain: h2b('279f17f14e7e3986bb71cf6c8a1018460596e62eea6ed91bb81b9706f4729f95')
   }
 }, {
   name: 'No Commitment Signature',
-  operation: 'BlindSign',
+  operation: 'BlindSignAndBlindVerify',
   parameters: {
     SK: BLS12381_SHAKE256.SK,
     PK: BLS12381_SHAKE256.PK,
@@ -248,11 +262,13 @@ BLS12381_SHAKE256.fixtures = [{
     messages: MESSAGES.slice(),
     committed_messages: [],
     signer_blind: h2s(''),
-    sign_mocked_random_scalars_options:
-      BLS12381_SHAKE256.sign_mocked_random_scalars_options
+    signature_mocked_random_scalars_options:
+      BLS12381_SHAKE256.signature_mocked_random_scalars_options
   },
-  // signature
-  output: h2b('8886984283bc433d56ac0f29bab40fb2273d0e7e42f5891c80c357473b504e2aae77658efbb0035cbf32771b7fe8dbbc3509d8e6d2a2a9917304e5a0650e9a6583edb53f82263222a92b41a531784d6e'),
+  output: {
+    signature: h2b('8886984283bc433d56ac0f29bab40fb2273d0e7e42f5891c80c357473b504e2aae77658efbb0035cbf32771b7fe8dbbc3509d8e6d2a2a9917304e5a0650e9a6583edb53f82263222a92b41a531784d6e'),
+    verified: true
+  },
   debug: {
     B: h2b('94ff8f3965846c90397b2e3a38dd0349f4b7ba049209fc99048f482ba21147e1c5bbe7f102fea9af93f47a7c5ad5a899'),
     domain: h2b('4e6f04eeb36ed65d8f088e7adf6c106c0db79527243ce19389514b389acf7adf')
