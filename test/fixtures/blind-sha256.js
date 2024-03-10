@@ -288,7 +288,6 @@ BLS12381_SHA256.fixtures = [{
     disclosed_commitment_indexes: [0, 1, 2, 3, 4],
     secret_prover_blind: h2s('4fba5396baa36b2fde81d46a9b9ee89c425dbc5e1ffd65c20249afb4abd37589'),
     signer_blind: h2s('10e75ca49d242390896d9dd943b97ff23b8cb780bf27df185f51b33abaaa94e2'),
-    signerBlind: h2s('10e75ca49d242390896d9dd943b97ff23b8cb780bf27df185f51b33abaaa94e2'),
     proof_mocked_random_scalars_options: {
       ...BLS12381_SHA256.proof_mocked_random_scalars_options,
       count: 6
@@ -296,8 +295,32 @@ BLS12381_SHA256.fixtures = [{
   },
   output: {
     proof: h2b('8b29fc429ae913cccb71f730fa61fd220a8ce673c6eb704106783b7e00a5fd5eb43fd06e9e76b068ab5ca6da93c0201b883bd8caf5ab4af7b3487f50c68c40a310ff3187be9eef536456ac11ca69c6bc43a96307633ee796ddb32346bb47018391f41e1c03cda63ebd5b112950aaa38b808986492873ad40cecf3b8ca9846837da824bfafd62bb8aea56938b653c7bb76b48c87dd7c7a1627d17281a4ba5a403df760ba8dc8599d383960f63a107618e5c77e27c61832dde296888c21e1acb9c6712f37dc916b91dcec2ead637eb7c926c506ddbddf2753c47b1718bc5fa49a3c1f094502b6b119e71fa0632cf64819f6ea38de039179cf6b168deb28f8792266b22d4e2403e7c8dccb23bc95a160e0f1d100fffd917533ac135507a55889223ec03952e420637681ff74d30b2e2246a'),
-    disclosed_messages: COMMITTED_MESSAGES.concat(MESSAGES),
+    messages: COMMITTED_MESSAGES.concat(MESSAGES),
     disclosed_indexes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  }
+}, {
+  name: 'Half Prover Committed Messages and All Signer Messages Disclosed',
+  operation: 'BlindVerifyAndBlindProofGen',
+  parameters: {
+    PK: BLS12381_SHA256.PK,
+    signature: h2b('ad7169408a137b7365c6f156d5011b72e57e027a7326dc4fb95128099af692fe7b1f7208b98ccbf717dcde22a611d2543ebd9679292532d6cd955975365fe5a260336f1329509e3e1fbce1bd2d9b5ef6'),
+    header: h2b('11223344556677889900aabbccddeeff'),
+    ph: h2b('bed231d880675ed101ead304512e043ade9958dd0241ea70b4b3957fba941501'),
+    messages: MESSAGES.slice(),
+    disclosed_indexes: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    committed_messages: COMMITTED_MESSAGES.slice(),
+    disclosed_commitment_indexes: [0, 2, 4],
+    secret_prover_blind: h2s('4fba5396baa36b2fde81d46a9b9ee89c425dbc5e1ffd65c20249afb4abd37589'),
+    signer_blind: h2s('10e75ca49d242390896d9dd943b97ff23b8cb780bf27df185f51b33abaaa94e2'),
+    proof_mocked_random_scalars_options: {
+      ...BLS12381_SHA256.proof_mocked_random_scalars_options,
+      count: 8
+    }
+  },
+  output: {
+    proof: h2b('91b42b089d23d096669b0cc5cfb238490eb0bd668d32d8092ac38ca526cc8daf7800ca804eb81c0ff48cf95c83669442b811a11fcd97e51603f677f11970ae060afe7e54edc8f436f9851b3a55d93694333122318f31405bc7a74bf15397994b89d091cf605c67c78231611d5fb4af9b9f34177d13fc5d6b197387d5b4098fb5da0b10f26a7235816f71d494e95ba0bf47cfc48802eb69a0ea54f165add455eca6058887e3a9b427bebb4e1c38cfd3b04e6d5d2989f81fc471b2babceab70646723f1d3fca309676d944d616d93b0dfc16453fcbf1a60200091cdf4b1ab6ce05b2d7d53c1b87f1940dd76fdd478e29ba1d6fea92b03fddab48f3a159961ec0f1e3ba48e3e91298457787514854ca7ae71554185a64ac4c9f5f95f7f160dab89a906174053dc01b6a4f4060dd289495376dff8d460e138e62343ec7af941b453025ce4ef1b5fb6855ae8f86d8027df71069f0ace60d26249dbeccd3db7bff56272695cf1d4481b95780b5bd865b0a229c'),
+    messages: COMMITTED_MESSAGES.concat(MESSAGES),
+    disclosed_indexes: [1, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
   }
 }];
 /* eslint-enable max-len */
