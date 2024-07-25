@@ -2,7 +2,7 @@
  * Copyright (c) 2023-2024 Digital Bazaar, Inc. All rights reserved.
  */
 import {
-  BlindProofGen, BlindSign, BlindVerify, Commit
+  BlindProofGen, BlindProofVerify, BlindSign, BlindVerify, Commit
 } from '../lib/bbs/blind/interface.js';
 import chai from 'chai';
 import {CIPHERSUITES_TEST_VECTORS} from './blind-test-vectors.js';
@@ -12,10 +12,11 @@ chai.should();
 const OPERATIONS = {
   BlindSignAndBlindVerify,
   BlindVerifyAndBlindProofGen,
-  Commit, CommitAndBlindSignAndBlindVerify
+  Commit, CommitAndBlindSignAndBlindVerify,
+  BlindProofVerify
 };
 
-describe.skip('Blind BBS test vectors', () => {
+describe.only('Blind BBS test vectors', () => {
   const only = CIPHERSUITES_TEST_VECTORS.filter(tv => {
     return tv.fixtures.some(({only}) => only);
   });

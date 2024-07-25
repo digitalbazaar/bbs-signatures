@@ -14,7 +14,7 @@ const OPERATIONS = {
   ProofGen, ProofGenAndProofVerify, ProofVerify, Sign, Verify
 };
 
-describe.only('BBS test vectors', () => {
+describe('BBS test vectors', () => {
   const only = CIPHERSUITES_TEST_VECTORS.filter(tv => {
     return tv.fixtures.some(({only}) => only);
   });
