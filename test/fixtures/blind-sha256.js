@@ -94,7 +94,7 @@ BLS12381_SHA256.fixtures = [{
   },
   output: [
     // commitment_with_proof
-    h2b('8bd94b05cd4e006145bc974cf5cdcc80e544a8c4624b0a7f6a5509430c79be788be86536b725ea93dd0a035b4ef822631dc4e8c1a02cc212cc9f914ecfab3470901d5d1573e4d03653af76ebf3bd891a226635ac82ee6cc94bc20135471365d2bb278e21eae8e71661ecd3f6301c7ba3'),
+    h2b('849d3cc626720202cbc1610fc01ab41ce32099af602def0c579f37dd18b485ef60719275a036bdd8120e7e938c8e1a3d4d0322587441ccc5caf186001b45dd09ee159713c3e3ea0f411f94a5d6665546562d09c093b687a129e464a57e18cdbf5306bcabf3e7cc95f5ba98cdd9bf3768'),
     // secret_prover_blind
     h2s('1b6f406b17aaf92dc7deb911c7cae49756a6623b5c385b5ae6214d7e3d9597f7')
   ]
@@ -113,7 +113,7 @@ BLS12381_SHA256.fixtures = [{
   },
   output: [
     // commitment_with_proof
-    h2b('8707ce71651e7fadbdd39cd88e83255629aacd969186eaefe95ea27935ab54af325220bb410af7f4389f85adc630548a02ff284a86147a4fc93da14be0c8f2c8df53b0057f71adee985b3b72bc759c2642187bd6cdc9f9e78f4d44b7fea7cb41563058647bc49614cdbb30b8f88264112e4b9aed8849609ab34eed40a83fa095d7ed156e9f89e7bb64bec73cd02ccd8814aa43b6f46cf2b5684125fbc25c0285aa525dc3aba6f21a597f7b5a424a014c5162983082c2d63ff500fc06b5200423fb647bf67815bb9baf76d5a8ccb665ba120fff68b6fd180f4b4c43fb437d68cff8eeac230a47d331b4a72f124957042e4664bae34f486b5c33d1120eaa676e6e302ed1f79739b75e074baa702beb7939'),
+    h2b('a2a3e178bcc77f98a3c07f8532134021ab5847326b5b3bfc3089ca73f1bc51cfe2c99163f4919525dd6bedc8a14ee39e30374643902017ca2e6fb8b5647c736e82d1d3c5b05de5c3021fa6f40d9f36dd22fa06e522411aa20377088ca9a15885d7a5044175f0168e927149ee71e2d257079e0100d6d96a7ddf5392dbc64267af8df7b4711cb5eeccb5e8901d0580b9e837f38337cb7260cffcf4f962154fafe5c98beaed7e4d2fc0f8e7eb1ba4eb04086f170aa4924894e2ab63054049c9ef5dfff4f90b48ef0dcf1f50699907301073270e4782d4d7628cfbe1444cea930928bb45004e41e0ad86a874ea03473845ce42f78ceb6f855ba8326a4d47732c5aed3968b396a07f079b22b5bf2139e51a03'),
     // secret_prover_blind
     h2s('4fba5396baa36b2fde81d46a9b9ee89c425dbc5e1ffd65c20249afb4abd37589')
   ]
@@ -123,7 +123,7 @@ BLS12381_SHA256.fixtures = [{
   parameters: {
     SK: BLS12381_SHA256.SK,
     PK: BLS12381_SHA256.PK,
-    commitment_with_proof: h2b('8bd94b05cd4e006145bc974cf5cdcc80e544a8c4624b0a7f6a5509430c79be788be86536b725ea93dd0a035b4ef822631dc4e8c1a02cc212cc9f914ecfab3470901d5d1573e4d03653af76ebf3bd891a226635ac82ee6cc94bc20135471365d2bb278e21eae8e71661ecd3f6301c7ba3'),
+    commitment_with_proof: h2b('849d3cc626720202cbc1610fc01ab41ce32099af602def0c579f37dd18b485ef60719275a036bdd8120e7e938c8e1a3d4d0322587441ccc5caf186001b45dd09ee159713c3e3ea0f411f94a5d6665546562d09c093b687a129e464a57e18cdbf5306bcabf3e7cc95f5ba98cdd9bf3768'),
     header: h2b('11223344556677889900aabbccddeeff'),
     messages: [],
     committed_messages: [],
@@ -137,12 +137,12 @@ BLS12381_SHA256.fixtures = [{
       BLS12381_SHA256.signature_mocked_random_scalars_options
   },
   output: {
-    signature: h2b('a001fb708fb48dc1c02c84114edfe4cce81a80c067159050c29b903680621c830e93213872305957c25122de78194a913165b2ffdd806e3152c4e2d712c396bd2619028cce1857d07ca96a9f5157f4c8'),
+    signature: h2b('86d36893c07d903af95d51e8b825e55d865179bbf4d864be65c8120f487957e8947ec51eb3d75b4116da0733fb448bb23b8a3df8c7574b114256a5ea10e4ef3c04c1ca551f15d9add84afe8d1f778299'),
     verified: true
   },
   debug: {
-    B: h2b('aa963d9eae5bf642b7b080c9b6cf33f19564e501638d85a0a1f862a86ee0b26e992fe52bbfc103c82038a41146994ede'),
-    domain: h2b('1666eb9faaa4d028797e16a9e89478b067615039c763c931c3df5012ef153b33')
+    B: h2b('8657e64b5d0002d46cb77f4c3f094ce2255e11d954bbf84b8ade0661b995fe5ff36db1aa2a6bac22fcbe902f5e0dfbe6'),
+    domain: h2b('0b3a152bc770ff9e21f09ac58f59c99379ca0eeb61990ba666d994014085b332')
   }
 }, {
   name: 'Multiple Prover Committed Messages, No Signer Messages',
@@ -150,7 +150,7 @@ BLS12381_SHA256.fixtures = [{
   parameters: {
     SK: BLS12381_SHA256.SK,
     PK: BLS12381_SHA256.PK,
-    commitment_with_proof: h2b('8707ce71651e7fadbdd39cd88e83255629aacd969186eaefe95ea27935ab54af325220bb410af7f4389f85adc630548a02ff284a86147a4fc93da14be0c8f2c8df53b0057f71adee985b3b72bc759c2642187bd6cdc9f9e78f4d44b7fea7cb41563058647bc49614cdbb30b8f88264112e4b9aed8849609ab34eed40a83fa095d7ed156e9f89e7bb64bec73cd02ccd8814aa43b6f46cf2b5684125fbc25c0285aa525dc3aba6f21a597f7b5a424a014c5162983082c2d63ff500fc06b5200423fb647bf67815bb9baf76d5a8ccb665ba120fff68b6fd180f4b4c43fb437d68cff8eeac230a47d331b4a72f124957042e4664bae34f486b5c33d1120eaa676e6e302ed1f79739b75e074baa702beb7939'),
+    commitment_with_proof: h2b('a2a3e178bcc77f98a3c07f8532134021ab5847326b5b3bfc3089ca73f1bc51cfe2c99163f4919525dd6bedc8a14ee39e30374643902017ca2e6fb8b5647c736e82d1d3c5b05de5c3021fa6f40d9f36dd22fa06e522411aa20377088ca9a15885d7a5044175f0168e927149ee71e2d257079e0100d6d96a7ddf5392dbc64267af8df7b4711cb5eeccb5e8901d0580b9e837f38337cb7260cffcf4f962154fafe5c98beaed7e4d2fc0f8e7eb1ba4eb04086f170aa4924894e2ab63054049c9ef5dfff4f90b48ef0dcf1f50699907301073270e4782d4d7628cfbe1444cea930928bb45004e41e0ad86a874ea03473845ce42f78ceb6f855ba8326a4d47732c5aed3968b396a07f079b22b5bf2139e51a03'),
     header: h2b('11223344556677889900aabbccddeeff'),
     messages: [],
     committed_messages: COMMITTED_MESSAGES.slice(),
@@ -164,12 +164,12 @@ BLS12381_SHA256.fixtures = [{
       BLS12381_SHA256.signature_mocked_random_scalars_options
   },
   output: {
-    signature: h2b('a9e3a078815b3f7c9d2a9310a5a5b6da193214cb6be6ef77dbbc8fac958ce26bec96ded9334aa0d56dc37992906b6a7d6ead4a7dafea18d3514ea4206f9a93b225debe99b8628ccad921d9253e39561c'),
+    signature: h2b('a85e436a6956de97d72409a4a125bdb0ec61838b2d022963e1599d43f5a66e1dc223396f0a4de94b110068f48e9e596a5836f2b435d94238e257348346f6902363d9fd0212b4cfb10c71b1a60a6051ac'),
     verified: true
   },
   debug: {
-    B: h2b('85f7a6c2593bb4c1ecf6bd84aa3fe29e4d2c7d59f236523efbad684a25b941ccf9abb83a8531e9badb7bf1bdb433808b'),
-    domain: h2b('1a0842369c4a79ed4709bce26963466699fafea687246b1074c91d9002c4bd1a')
+    B: h2b('8cef19ef65942ba26e3937da185d026a80296b776e7f2a5bc510ac19e5080aa7f6488ca9636aaa9a3057d0982fc3f6d8'),
+    domain: h2b('13c94073eb7dbd279f60d5907c19d83e4a9ae19f99d6b3ca020785730a3f37eb')
   }
 }, {
   name: 'No Prover Committed Messages, Multiple Signer Messages',
@@ -177,7 +177,7 @@ BLS12381_SHA256.fixtures = [{
   parameters: {
     SK: BLS12381_SHA256.SK,
     PK: BLS12381_SHA256.PK,
-    commitment_with_proof: h2b('8bd94b05cd4e006145bc974cf5cdcc80e544a8c4624b0a7f6a5509430c79be788be86536b725ea93dd0a035b4ef822631dc4e8c1a02cc212cc9f914ecfab3470901d5d1573e4d03653af76ebf3bd891a226635ac82ee6cc94bc20135471365d2bb278e21eae8e71661ecd3f6301c7ba3'),
+    commitment_with_proof: h2b('849d3cc626720202cbc1610fc01ab41ce32099af602def0c579f37dd18b485ef60719275a036bdd8120e7e938c8e1a3d4d0322587441ccc5caf186001b45dd09ee159713c3e3ea0f411f94a5d6665546562d09c093b687a129e464a57e18cdbf5306bcabf3e7cc95f5ba98cdd9bf3768'),
     header: h2b('11223344556677889900aabbccddeeff'),
     messages: MESSAGES.slice(),
     committed_messages: [],
@@ -191,12 +191,12 @@ BLS12381_SHA256.fixtures = [{
       BLS12381_SHA256.signature_mocked_random_scalars_options
   },
   output: {
-    signature: h2b('b3e48d4f916c372e330b3727d14f1543cd5de4285e6c3b90692bc842e0cc1f4eed563726df615fbd77427975222d196664d8733cf38ac4c57efe85a055290cde0cd08680309218db9e04f3299985e814'),
+    signature: h2b('9354cc873de959c7739553fcf7742796c49a314152ccd94af1b7f74244d26276197cbe6b5be575d678b05c39cf4ffedf12dc2196dbcffd2c187d0c905325ce89171ab66f3672a966e4fd56a48f6af115'),
     verified: true
   },
   debug: {
-    B: h2b('b16f00f40d3a60700f7da8589b876ad722279de6e6c66dd2681a6855a3d71f2976802972a4e7bcfa88e1f2e44387d9eb'),
-    domain: h2b('69ab8c6eb9481bee9c3cf60dfb9d3f539023e8c6e78c6568d0913ea046752a2b')
+    B: h2b('99c95be56780fa694d182ca279de80297eb93fae1c8f398c7bc155b0a3be3abc7c61813cfead8a35a89dc4d7118b266f'),
+    domain: h2b('1430cf0a3d8a0519a9ecf47534b6026a7671935d9854ed5e68b42fdb543d5f7a')
   }
 }, {
   name: 'Multiple Prover Committed and Signer Messages',
@@ -204,7 +204,7 @@ BLS12381_SHA256.fixtures = [{
   parameters: {
     SK: BLS12381_SHA256.SK,
     PK: BLS12381_SHA256.PK,
-    commitment_with_proof: h2b('8707ce71651e7fadbdd39cd88e83255629aacd969186eaefe95ea27935ab54af325220bb410af7f4389f85adc630548a02ff284a86147a4fc93da14be0c8f2c8df53b0057f71adee985b3b72bc759c2642187bd6cdc9f9e78f4d44b7fea7cb41563058647bc49614cdbb30b8f88264112e4b9aed8849609ab34eed40a83fa095d7ed156e9f89e7bb64bec73cd02ccd8814aa43b6f46cf2b5684125fbc25c0285aa525dc3aba6f21a597f7b5a424a014c5162983082c2d63ff500fc06b5200423fb647bf67815bb9baf76d5a8ccb665ba120fff68b6fd180f4b4c43fb437d68cff8eeac230a47d331b4a72f124957042e4664bae34f486b5c33d1120eaa676e6e302ed1f79739b75e074baa702beb7939'),
+    commitment_with_proof: h2b('a2a3e178bcc77f98a3c07f8532134021ab5847326b5b3bfc3089ca73f1bc51cfe2c99163f4919525dd6bedc8a14ee39e30374643902017ca2e6fb8b5647c736e82d1d3c5b05de5c3021fa6f40d9f36dd22fa06e522411aa20377088ca9a15885d7a5044175f0168e927149ee71e2d257079e0100d6d96a7ddf5392dbc64267af8df7b4711cb5eeccb5e8901d0580b9e837f38337cb7260cffcf4f962154fafe5c98beaed7e4d2fc0f8e7eb1ba4eb04086f170aa4924894e2ab63054049c9ef5dfff4f90b48ef0dcf1f50699907301073270e4782d4d7628cfbe1444cea930928bb45004e41e0ad86a874ea03473845ce42f78ceb6f855ba8326a4d47732c5aed3968b396a07f079b22b5bf2139e51a03'),
     header: h2b('11223344556677889900aabbccddeeff'),
     messages: MESSAGES.slice(),
     committed_messages: COMMITTED_MESSAGES.slice(),
@@ -218,12 +218,12 @@ BLS12381_SHA256.fixtures = [{
       BLS12381_SHA256.signature_mocked_random_scalars_options
   },
   output: {
-    signature: h2b('ad7169408a137b7365c6f156d5011b72e57e027a7326dc4fb95128099af692fe7b1f7208b98ccbf717dcde22a611d2543ebd9679292532d6cd955975365fe5a260336f1329509e3e1fbce1bd2d9b5ef6'),
+    signature: h2b('aa1a66a6feafef7fa91f158c11d305bde01ead2352e3678c07472b7086d4315d4b260340b6946cf59dc1f8c0529242811f45b727c933ce0221a9e8e8f3bb9263e74b432e4ad4d203705f9aa87ad7fac9'),
     verified: true
   },
   debug: {
-    B: h2b('ab6c841535ba75d568e913d716cf2920624044c5cd99cfbebb564d5c0654a9bbc3c458cc3c51349ece6ec40223f7e2a5'),
-    domain: h2b('386bb1c7c4d1e3b95686cd66ad21ba8302f9f87290cc800a79c910f0e96dbd02')
+    B: h2b('937ae4c3c82f8666f235b4bbd5e25b56f3608220bf7e813766d755561c00c9e98ea3cecc579b795683b6bb5bfc571cc6'),
+    domain: h2b('1207ed090723fa7e41c07e970ebb647d1d043079cc2a38c650c32234f1823936')
   }
 }, {
   name: 'Multiple Prover Committed and Signer Messages, No Signer Blind',
@@ -231,7 +231,7 @@ BLS12381_SHA256.fixtures = [{
   parameters: {
     SK: BLS12381_SHA256.SK,
     PK: BLS12381_SHA256.PK,
-    commitment_with_proof: h2b('8707ce71651e7fadbdd39cd88e83255629aacd969186eaefe95ea27935ab54af325220bb410af7f4389f85adc630548a02ff284a86147a4fc93da14be0c8f2c8df53b0057f71adee985b3b72bc759c2642187bd6cdc9f9e78f4d44b7fea7cb41563058647bc49614cdbb30b8f88264112e4b9aed8849609ab34eed40a83fa095d7ed156e9f89e7bb64bec73cd02ccd8814aa43b6f46cf2b5684125fbc25c0285aa525dc3aba6f21a597f7b5a424a014c5162983082c2d63ff500fc06b5200423fb647bf67815bb9baf76d5a8ccb665ba120fff68b6fd180f4b4c43fb437d68cff8eeac230a47d331b4a72f124957042e4664bae34f486b5c33d1120eaa676e6e302ed1f79739b75e074baa702beb7939'),
+    commitment_with_proof: h2b('a2a3e178bcc77f98a3c07f8532134021ab5847326b5b3bfc3089ca73f1bc51cfe2c99163f4919525dd6bedc8a14ee39e30374643902017ca2e6fb8b5647c736e82d1d3c5b05de5c3021fa6f40d9f36dd22fa06e522411aa20377088ca9a15885d7a5044175f0168e927149ee71e2d257079e0100d6d96a7ddf5392dbc64267af8df7b4711cb5eeccb5e8901d0580b9e837f38337cb7260cffcf4f962154fafe5c98beaed7e4d2fc0f8e7eb1ba4eb04086f170aa4924894e2ab63054049c9ef5dfff4f90b48ef0dcf1f50699907301073270e4782d4d7628cfbe1444cea930928bb45004e41e0ad86a874ea03473845ce42f78ceb6f855ba8326a4d47732c5aed3968b396a07f079b22b5bf2139e51a03'),
     header: h2b('11223344556677889900aabbccddeeff'),
     messages: MESSAGES.slice(),
     committed_messages: COMMITTED_MESSAGES.slice(),
@@ -245,12 +245,12 @@ BLS12381_SHA256.fixtures = [{
       BLS12381_SHA256.signature_mocked_random_scalars_options
   },
   output: {
-    signature: h2b('91902b68ac869d0b250355be499fe555e292759de6cad9c28eec51d3f4bb5f435238636538d347be44a4b33e0edbfd4d1bc5b0082b29eea3b3aed2b718706a8d08ada2fe623279472fa5e4c571c44ebf'),
+    signature: h2b('9391c79efcc8840774374b2463b28912ce2aad9dca39136746810c8563fa2dcae7dc88a454cfc2db5305831fe9c70b0f0cce199707ce1ae88a1d2828486c14d039c191c26bf3560a0f4e71e364d4781a'),
     verified: true
   },
   debug: {
-    B: h2b('8444fca0a990ab19c0c7c7cd93ed31406e5dde17c16f1333c2e42284ddfb88e062fed9fd2aa6ae6cc81e6b9a6251fcb6'),
-    domain: h2b('386bb1c7c4d1e3b95686cd66ad21ba8302f9f87290cc800a79c910f0e96dbd02')
+    B: h2b('8e1c3ee4b13e5936f9cb5f87342107ed9ab4417c04d6e5d712143a54bdb476aaf4240e8a4f11a67d81feb1398f889889'),
+    domain: h2b('1207ed090723fa7e41c07e970ebb647d1d043079cc2a38c650c32234f1823936')
   }
 }, {
   name: 'No Commitment Signature',
@@ -271,15 +271,15 @@ BLS12381_SHA256.fixtures = [{
     verified: true
   },
   debug: {
-    B: h2b('853ff87eda30796f5997ec3fb9fffcefa78b0b457ce9f2487b8afaa0ffa5098053dc91a65e0b169d97f7b1123e80ab14'),
-    domain: h2b('160cf879138e86f8f6025c41ec94434432a315c33dc6b90c38f1b21ce101418c')
+    B: h2b('874d657ff2b90023d18c8eb1d2fbc0beb8b9c1ae98a285db1076466edd7c0a3179bc572d4f7b0e15b39cbe298d2023cd'),
+    domain: h2b('1430cf0a3d8a0519a9ecf47534b6026a7671935d9854ed5e68b42fdb543d5f7a')
   }
 }, {
   name: 'All Prover Committed Messages and Signer Messages Disclosed',
   operation: 'BlindVerifyAndBlindProofGen',
   parameters: {
     PK: BLS12381_SHA256.PK,
-    signature: h2b('ad7169408a137b7365c6f156d5011b72e57e027a7326dc4fb95128099af692fe7b1f7208b98ccbf717dcde22a611d2543ebd9679292532d6cd955975365fe5a260336f1329509e3e1fbce1bd2d9b5ef6'),
+    signature: h2b('aa1a66a6feafef7fa91f158c11d305bde01ead2352e3678c07472b7086d4315d4b260340b6946cf59dc1f8c0529242811f45b727c933ce0221a9e8e8f3bb9263e74b432e4ad4d203705f9aa87ad7fac9'),
     header: h2b('11223344556677889900aabbccddeeff'),
     ph: h2b('bed231d880675ed101ead304512e043ade9958dd0241ea70b4b3957fba941501'),
     messages: MESSAGES.slice(),
@@ -303,7 +303,7 @@ BLS12381_SHA256.fixtures = [{
   operation: 'BlindVerifyAndBlindProofGen',
   parameters: {
     PK: BLS12381_SHA256.PK,
-    signature: h2b('ad7169408a137b7365c6f156d5011b72e57e027a7326dc4fb95128099af692fe7b1f7208b98ccbf717dcde22a611d2543ebd9679292532d6cd955975365fe5a260336f1329509e3e1fbce1bd2d9b5ef6'),
+    signature: h2b('aa1a66a6feafef7fa91f158c11d305bde01ead2352e3678c07472b7086d4315d4b260340b6946cf59dc1f8c0529242811f45b727c933ce0221a9e8e8f3bb9263e74b432e4ad4d203705f9aa87ad7fac9'),
     header: h2b('11223344556677889900aabbccddeeff'),
     ph: h2b('bed231d880675ed101ead304512e043ade9958dd0241ea70b4b3957fba941501'),
     messages: MESSAGES.slice(),
@@ -327,7 +327,7 @@ BLS12381_SHA256.fixtures = [{
   operation: 'BlindVerifyAndBlindProofGen',
   parameters: {
     PK: BLS12381_SHA256.PK,
-    signature: h2b('ad7169408a137b7365c6f156d5011b72e57e027a7326dc4fb95128099af692fe7b1f7208b98ccbf717dcde22a611d2543ebd9679292532d6cd955975365fe5a260336f1329509e3e1fbce1bd2d9b5ef6'),
+    signature: h2b('aa1a66a6feafef7fa91f158c11d305bde01ead2352e3678c07472b7086d4315d4b260340b6946cf59dc1f8c0529242811f45b727c933ce0221a9e8e8f3bb9263e74b432e4ad4d203705f9aa87ad7fac9'),
     header: h2b('11223344556677889900aabbccddeeff'),
     ph: h2b('bed231d880675ed101ead304512e043ade9958dd0241ea70b4b3957fba941501'),
     messages: MESSAGES.slice(),
@@ -351,7 +351,7 @@ BLS12381_SHA256.fixtures = [{
   operation: 'BlindVerifyAndBlindProofGen',
   parameters: {
     PK: BLS12381_SHA256.PK,
-    signature: h2b('ad7169408a137b7365c6f156d5011b72e57e027a7326dc4fb95128099af692fe7b1f7208b98ccbf717dcde22a611d2543ebd9679292532d6cd955975365fe5a260336f1329509e3e1fbce1bd2d9b5ef6'),
+    signature: h2b('aa1a66a6feafef7fa91f158c11d305bde01ead2352e3678c07472b7086d4315d4b260340b6946cf59dc1f8c0529242811f45b727c933ce0221a9e8e8f3bb9263e74b432e4ad4d203705f9aa87ad7fac9'),
     header: h2b('11223344556677889900aabbccddeeff'),
     ph: h2b('bed231d880675ed101ead304512e043ade9958dd0241ea70b4b3957fba941501'),
     messages: MESSAGES.slice(),
@@ -375,7 +375,7 @@ BLS12381_SHA256.fixtures = [{
   operation: 'BlindVerifyAndBlindProofGen',
   parameters: {
     PK: BLS12381_SHA256.PK,
-    signature: h2b('ad7169408a137b7365c6f156d5011b72e57e027a7326dc4fb95128099af692fe7b1f7208b98ccbf717dcde22a611d2543ebd9679292532d6cd955975365fe5a260336f1329509e3e1fbce1bd2d9b5ef6'),
+    signature: h2b('aa1a66a6feafef7fa91f158c11d305bde01ead2352e3678c07472b7086d4315d4b260340b6946cf59dc1f8c0529242811f45b727c933ce0221a9e8e8f3bb9263e74b432e4ad4d203705f9aa87ad7fac9'),
     header: h2b('11223344556677889900aabbccddeeff'),
     ph: h2b('bed231d880675ed101ead304512e043ade9958dd0241ea70b4b3957fba941501'),
     messages: MESSAGES.slice(),
@@ -399,7 +399,7 @@ BLS12381_SHA256.fixtures = [{
   operation: 'BlindVerifyAndBlindProofGen',
   parameters: {
     PK: BLS12381_SHA256.PK,
-    signature: h2b('ad7169408a137b7365c6f156d5011b72e57e027a7326dc4fb95128099af692fe7b1f7208b98ccbf717dcde22a611d2543ebd9679292532d6cd955975365fe5a260336f1329509e3e1fbce1bd2d9b5ef6'),
+    signature: h2b('aa1a66a6feafef7fa91f158c11d305bde01ead2352e3678c07472b7086d4315d4b260340b6946cf59dc1f8c0529242811f45b727c933ce0221a9e8e8f3bb9263e74b432e4ad4d203705f9aa87ad7fac9'),
     header: h2b('11223344556677889900aabbccddeeff'),
     ph: h2b('bed231d880675ed101ead304512e043ade9958dd0241ea70b4b3957fba941501'),
     messages: MESSAGES.slice(),
@@ -423,7 +423,7 @@ BLS12381_SHA256.fixtures = [{
   operation: 'BlindVerifyAndBlindProofGen',
   parameters: {
     PK: BLS12381_SHA256.PK,
-    signature: h2b('ad7169408a137b7365c6f156d5011b72e57e027a7326dc4fb95128099af692fe7b1f7208b98ccbf717dcde22a611d2543ebd9679292532d6cd955975365fe5a260336f1329509e3e1fbce1bd2d9b5ef6'),
+    signature: h2b('aa1a66a6feafef7fa91f158c11d305bde01ead2352e3678c07472b7086d4315d4b260340b6946cf59dc1f8c0529242811f45b727c933ce0221a9e8e8f3bb9263e74b432e4ad4d203705f9aa87ad7fac9'),
     header: h2b('11223344556677889900aabbccddeeff'),
     ph: h2b('bed231d880675ed101ead304512e043ade9958dd0241ea70b4b3957fba941501'),
     messages: MESSAGES.slice(),
@@ -470,5 +470,157 @@ BLS12381_SHA256.fixtures = [{
     messages: MESSAGES,
     disclosed_indexes: [0, 2, 4, 6, 8]
   }
+}, {
+  name: 'All Prover Committed Messages and Signer Messages Disclosed',
+  operation: 'BlindProofVerify',
+  parameters: {
+    PK: BLS12381_SHA256.PK,
+    header: h2b('11223344556677889900aabbccddeeff'),
+    ph: h2b('bed231d880675ed101ead304512e043ade9958dd0241ea70b4b3957fba941501'),
+    L: 10,
+    disclosed_messages: MESSAGES.slice(),
+    disclosed_indexes: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    disclosed_committed_messages: COMMITTED_MESSAGES.slice(),
+    disclosed_committed_indexes: [0, 1, 2, 3, 4]
+  },
+  output: true
+}, {
+  name: 'Half Prover Committed Messages and All Signer Messages Disclosed',
+  operation: 'BlindProofVerify',
+  parameters: {
+    PK: BLS12381_SHA256.PK,
+    header: h2b('11223344556677889900aabbccddeeff'),
+    ph: h2b('bed231d880675ed101ead304512e043ade9958dd0241ea70b4b3957fba941501'),
+    L: 10,
+    disclosed_messages: MESSAGES.slice(),
+    disclosed_indexes: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    disclosed_committed_messages: [
+      COMMITTED_MESSAGES[0],
+      COMMITTED_MESSAGES[2],
+      COMMITTED_MESSAGES[4]
+    ],
+    disclosed_committed_indexes: [0, 2, 4]
+  },
+  output: true
+}, {
+  name: 'All Prover Committed Messages and Half Signer Messages Disclosed',
+  operation: 'BlindProofVerify',
+  parameters: {
+    PK: BLS12381_SHA256.PK,
+    header: h2b('11223344556677889900aabbccddeeff'),
+    ph: h2b('bed231d880675ed101ead304512e043ade9958dd0241ea70b4b3957fba941501'),
+    L: 10,
+    disclosed_messages: [
+      MESSAGES[0],
+      MESSAGES[2],
+      MESSAGES[4],
+      MESSAGES[6],
+      MESSAGES[8]
+    ],
+    disclosed_indexes: [0, 2, 4, 6, 8],
+    disclosed_committed_messages: COMMITTED_MESSAGES.slice(),
+    disclosed_committed_indexes: [0, 1, 2, 3, 4]
+  },
+  output: true
+}, {
+  name: 'Half Prover Committed Messages and Half Signer Messages',
+  operation: 'BlindProofVerify',
+  parameters: {
+    PK: BLS12381_SHA256.PK,
+    header: h2b('11223344556677889900aabbccddeeff'),
+    ph: h2b('bed231d880675ed101ead304512e043ade9958dd0241ea70b4b3957fba941501'),
+    L: 10,
+    disclosed_messages: [
+      MESSAGES[0],
+      MESSAGES[2],
+      MESSAGES[4],
+      MESSAGES[6],
+      MESSAGES[8]
+    ],
+    disclosed_indexes: [0, 2, 4, 6, 8],
+    disclosed_committed_messages: [
+      COMMITTED_MESSAGES[0],
+      COMMITTED_MESSAGES[2],
+      COMMITTED_MESSAGES[4]
+    ],
+    disclosed_committed_indexes: [0, 2, 4]
+  },
+  output: true
+}, {
+  name: 'No Prover Committed Messages and Half Signer Messages Disclosed',
+  operation: 'BlindProofVerify',
+  parameters: {
+    PK: BLS12381_SHA256.PK,
+    header: h2b('11223344556677889900aabbccddeeff'),
+    ph: h2b('bed231d880675ed101ead304512e043ade9958dd0241ea70b4b3957fba941501'),
+    L: 10,
+    disclosed_messages: [
+      MESSAGES[0],
+      MESSAGES[2],
+      MESSAGES[4],
+      MESSAGES[6],
+      MESSAGES[8]
+    ],
+    disclosed_indexes: [0, 2, 4, 6, 8],
+    disclosed_committed_messages: [],
+    disclosed_committed_indexes: []
+  },
+  output: true
+}, {
+  name: 'Half Prover Committed Messages and No Signer Messages Disclosed',
+  operation: 'BlindProofVerify',
+  parameters: {
+    PK: BLS12381_SHA256.PK,
+    header: h2b('11223344556677889900aabbccddeeff'),
+    ph: h2b('bed231d880675ed101ead304512e043ade9958dd0241ea70b4b3957fba941501'),
+    L: 10,
+    disclosed_messages: [],
+    disclosed_indexes: [],
+    disclosed_committed_messages: [
+      COMMITTED_MESSAGES[0],
+      COMMITTED_MESSAGES[2],
+      COMMITTED_MESSAGES[4]
+    ],
+    disclosed_committed_indexes: [0, 2, 4]
+  },
+  output: true
+}, {
+  name: 'No Prover Committed Messages and No Signer Messages Disclosed',
+  operation: 'BlindProofVerify',
+  parameters: {
+    PK: BLS12381_SHA256.PK,
+    header: h2b('11223344556677889900aabbccddeeff'),
+    ph: h2b('bed231d880675ed101ead304512e043ade9958dd0241ea70b4b3957fba941501'),
+    L: 10,
+    disclosed_messages: [],
+    disclosed_indexes: [],
+    disclosed_committed_messages: [],
+    disclosed_committed_indexes: []
+  },
+  output: true
+}, {
+  // spec test vector seems wrong; test will pass if checks to ensure that the
+  // right number of random_scalars are produced are ignored
+  skip: true,
+  name: 'No Commitment and Half Signer Messages Disclosed',
+  operation: 'BlindProofVerify',
+  parameters: {
+    PK: BLS12381_SHA256.PK,
+    proof: h2b('b52167f9cee8792582213798dc6909be7ac4a9084750b68d31abcc0c1231cc870e2b4c06e4799f2913d95fd2b84434a3b1392df3fe62719647cbf081f0677df748bf49a072551cfbee0a8d8772fb7b32208213ae3ba24c2ac8d2cc55aba99b7cb5d7b5546131fa21e6fe6b6715b81532d18ecc63908ac25dc2fd3b4dd054600ac6b2f82d05bef0e898d9b90f89df2aea62b346bbdeffe56401e3869fecf66086f1a94b7d12d96737fbcc131aaafe0fdd602536c489001cc775398558e678e9f67c36233ced8c104d99f66a70cb4fd1f3524242535cef2ac8b4c357822aca9c95284a7d825ece0a961b813b917312c0271b4d3ffa3244f0be87c8ec8ddfa575c1dc23d25347f51d20b24b950a956ead3e3ee755d9171ff136d3e464cacb53464acef7085aeee0c7556d576e4e81734d460a0905a0ef594d82f08d3d1d791e3278ddb784653f3a5c3fb789470fdc3f768c56007aab7709a1b82fd3c14c60778c15f662d30920dab48034fd703e70793a8204f34235f5fb7fe38959b58e11a539beb9e1e6e16aad50d7a59d3c7ae33e30594995eebf1985ce952985b23287b454c89fc72b7a63829dc95fd2aa5bc68a146a'),
+    header: h2b('11223344556677889900aabbccddeeff'),
+    ph: h2b('bed231d880675ed101ead304512e043ade9958dd0241ea70b4b3957fba941501'),
+    L: 10,
+    disclosed_messages: [
+      MESSAGES[0],
+      MESSAGES[2],
+      MESSAGES[4],
+      MESSAGES[6],
+      MESSAGES[8]
+    ],
+    disclosed_indexes: [0, 2, 4, 6, 8],
+    disclosed_committed_messages: [],
+    disclosed_committed_indexes: []
+  },
+  output: true
 }];
 /* eslint-enable max-len */
