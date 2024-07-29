@@ -46,7 +46,6 @@ async function BlindSignAndBlindVerify({
   SK, PK,
   commitment_with_proof,
   header = new Uint8Array(),
-  ph = new Uint8Array(),
   messages = [],
   committed_messages,
   secret_prover_blind,
@@ -62,7 +61,7 @@ async function BlindSignAndBlindVerify({
   }
   const signature = await BlindSign({
     SK, PK, commitment_with_proof,
-    header, ph, messages, signer_blind, ciphersuite
+    header, messages, signer_blind, ciphersuite
   });
   const verified = await BlindVerify({
     PK, signature, header,
@@ -111,7 +110,6 @@ async function CommitAndBlindSignAndBlindVerify({
   SK, PK,
   commitment_with_proof,
   header = new Uint8Array(),
-  ph = new Uint8Array(),
   messages = [],
   committed_messages,
   secret_prover_blind,
@@ -134,7 +132,7 @@ async function CommitAndBlindSignAndBlindVerify({
   }
   const signature = await BlindSign({
     SK, PK, commitment_with_proof,
-    header, ph, messages, signer_blind, ciphersuite
+    header, messages, signer_blind, ciphersuite
   });
   const verified = await BlindVerify({
     PK, signature, header,
