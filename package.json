@@ -1,6 +1,6 @@
 {
   "name": "@digitalbazaar/bbs-signatures",
-  "version": "3.0.0",
+  "version": "3.0.1-0",
   "description": "A JavasSript BBS Signatures Implementation",
   "homepage": "https://github.com/digitalbazaar/bbs-signatures",
   "repository": {
