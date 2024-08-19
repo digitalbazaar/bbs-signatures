@@ -1,11 +1,12 @@
 # @digitalbazaar/bbs-signatures ChangeLog
 
-## 2.2.0 - 2024-03-dd
+## 3.0.0 - 2024-03-dd
 
-### Added
-- Add `ProofGenWithPseudonym`, `ProofVerifyWithPseudonym`, and enable
-  `Sign` and `Verify` to take `pid` optional parameter to require the
-  use of a pseudonym in proof generation and verification.
+### Changed
+- **BREAKING**: Update challenge format to work with IETF BBS draf 6. This
+  version is incompatible with previous versions and any proofs generated
+  using the previous version should be considered obsolete and non-standard,
+  i.e., they will not be verifiable via any interoperable software.
 
 ## 2.1.0 - 2024-01-11
 
