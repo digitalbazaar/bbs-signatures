@@ -1,6 +1,6 @@
 # @digitalbazaar/bbs-signatures ChangeLog
 
-## 3.0.0 - 2024-03-dd
+## 3.0.0 - 2024-08-19
 
 ### Changed
 - **BREAKING**: Update challenge format to work with IETF BBS draf 6. This
