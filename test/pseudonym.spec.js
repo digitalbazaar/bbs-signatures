@@ -18,7 +18,7 @@ const OPERATIONS = {
   ProofVerifyWithPseudonym,
 };
 
-describe.only('Pseudonym BBS test vectors', () => {
+describe.skip('Pseudonym BBS test vectors', () => {
   const only = CIPHERSUITES_TEST_VECTORS.filter(tv => {
     return tv.fixtures.some(({only}) => only);
   });
@@ -61,11 +61,9 @@ async function PidSignAndVerify({
     test_signer_blind.should.eql(signer_blind);
   }
   messages = [...messages, pid];
-  console.log('THE MESSAGE COUNT', messages.length);
   const signature = await BlindSign({
     SK, PK, header, messages, signer_blind, api_id, ciphersuite
   });
-  console.log('signature', Buffer.from(signature).toString('hex'));
   const verified = await BlindVerify({
     PK, signature, header,
     messages, committed_messages: [],
@@ -97,8 +95,7 @@ async function PidVerifyAndProofGenWithPseudonym({
     api_id, ciphersuite
   });
   verifyResult.should.equal(true);
-  //return ProofGenWithPseudonym({
-  const foo = await ProofGenWithPseudonym({
+  return ProofGenWithPseudonym({
     PK, signature,
     pseudonym, verifier_id, pid,
     header, ph,
@@ -106,6 +103,4 @@ async function PidVerifyAndProofGenWithPseudonym({
     api_id, ciphersuite,
     mocked_random_scalars_options: proof_mocked_random_scalars_options
   });
-  console.log('foo', Buffer.from(foo).toString('hex'));
-  return foo;
 }
