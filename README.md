@@ -19,7 +19,9 @@
 
 See also (related specs):
 
-* [BBS Signatures RFC](https://www.ietf.org/archive/id/draft-irtf-cfrg-bbs-signatures-05.html)
+* [BBS Signatures RFC](https://www.ietf.org/archive/id/draft-irtf-cfrg-bbs-signatures-06.html)
+* [BBS Blind Signatures RFC](https://www.ietf.org/archive/id/draft-kalos-bbs-blind-signatures-03.html)
+* [BBS Pseudonyms RFC](https://www.ietf.org/archive/id/draft-kalos-bbs-per-verifier-linkability-00.html)
 
 ## Security
 
