@@ -3,7 +3,7 @@
 ## 3.0.0 - 2024-08-19
 
 ### Changed
-- **BREAKING**: Update challenge format to work with IETF BBS draf 6. This
+- **BREAKING**: Update challenge format to work with IETF BBS draft 6. This
   version is incompatible with previous versions and any proofs generated
   using the previous version should be considered obsolete and non-standard,
   i.e., they will not be verifiable via any interoperable software.
