@@ -50,6 +50,7 @@ export const BLS12381_SHAKE256 = {
     seed: h2b('332e313431353932363533353839373933323338343632363433333833323739'),
     dst: TEXT_ENCODER.encode('BBS_BLS12381G1_XOF:SHAKE-256_SSWU_RO_H2G_HM2S_COMMIT_MOCK_RANDOM_SCALARS_DST_')
   },
+  // FIXME: remove if no longer needed
   signature_mocked_random_scalars_options: {
     seed: h2b('332e313431353932363533353839373933323338343632363433333833323739'),
     dst: TEXT_ENCODER.encode('BBS_BLS12381G1_XOF:SHAKE-256_SSWU_RO_H2G_HM2S_SIGNATURE_MOCK_RANDOM_SCALARS_DST_'),
@@ -127,13 +128,10 @@ BLS12381_SHAKE256.fixtures = [{
     messages: [],
     committed_messages: [],
     secret_prover_blind: h2s('30bd5c9bd2b61c44dd169c92cf28bb607830c56073f10e7a800c857cb05ec249'),
-    signer_blind: h2s('49541deb67dc42d5509d39548637959bc43e105fff02c780a308c78e0a1e3c7f'),
     commit_mocked_random_scalars_options: {
       ...BLS12381_SHAKE256.commit_mocked_random_scalars_options,
       count: 2
-    },
-    signature_mocked_random_scalars_options:
-      BLS12381_SHAKE256.signature_mocked_random_scalars_options
+    }
   },
   output: {
     signature: h2b('94e59d341a107330ebee0f7022bfe8639139c1383a945a9371fbc3046f71cec86fd6528d98b7ba388da6394cfc4ca62645cba02f83bb6a6c3ab736d7e45f60fd7506d28ee86b7e2a1c81cb86d4acf722'),
@@ -154,13 +152,10 @@ BLS12381_SHAKE256.fixtures = [{
     messages: [],
     committed_messages: COMMITTED_MESSAGES.slice(),
     secret_prover_blind: h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649'),
-    signer_blind: h2s('49541deb67dc42d5509d39548637959bc43e105fff02c780a308c78e0a1e3c7f'),
     commit_mocked_random_scalars_options: {
       ...BLS12381_SHAKE256.commit_mocked_random_scalars_options,
       count: 7
-    },
-    signature_mocked_random_scalars_options:
-      BLS12381_SHAKE256.signature_mocked_random_scalars_options
+    }
   },
   output: {
     signature: h2b('86f46e9f656965c1f88f5f58243127ddc37fd38f4edba8e1d111d0c0aabaff1cd5d10b9b918933b743744b61c0ddce9e0764552e596674db723e7234233c7c97dd14270c7a0fffc70ef65b2e1137004a'),
@@ -181,13 +176,10 @@ BLS12381_SHAKE256.fixtures = [{
     messages: MESSAGES.slice(),
     committed_messages: [],
     secret_prover_blind: h2s('30bd5c9bd2b61c44dd169c92cf28bb607830c56073f10e7a800c857cb05ec249'),
-    signer_blind: h2s('49541deb67dc42d5509d39548637959bc43e105fff02c780a308c78e0a1e3c7f'),
     commit_mocked_random_scalars_options: {
       ...BLS12381_SHAKE256.commit_mocked_random_scalars_options,
       count: 2
-    },
-    signature_mocked_random_scalars_options:
-      BLS12381_SHAKE256.signature_mocked_random_scalars_options
+    }
   },
   output: {
     signature: h2b('aefec656164a1d429acf8d7f1a7daf1fe2fcc959428633fc76748d15f4515f2c1ff7d26a6e784b20c743f9d01c8f73d51fe9585124b79cf0122ee58acb41e0e1e6940af4ad3eab5fb63e2438a946be94'),
@@ -208,13 +200,10 @@ BLS12381_SHAKE256.fixtures = [{
     messages: MESSAGES.slice(),
     committed_messages: COMMITTED_MESSAGES.slice(),
     secret_prover_blind: h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649'),
-    signer_blind: h2s('49541deb67dc42d5509d39548637959bc43e105fff02c780a308c78e0a1e3c7f'),
     commit_mocked_random_scalars_options: {
       ...BLS12381_SHAKE256.commit_mocked_random_scalars_options,
       count: 7
-    },
-    signature_mocked_random_scalars_options:
-      BLS12381_SHAKE256.signature_mocked_random_scalars_options
+    }
   },
   output: {
     signature: h2b('98699909137b16b5ebfdec7396d515f606415353f4ef0a329db11bb2fddd266900e54219da5cec913c1d4593b8231a1842c1659bc991b18e778c195540621d097d0288aba536052b1d14510d3ed165f5'),
@@ -235,13 +224,10 @@ BLS12381_SHAKE256.fixtures = [{
     messages: MESSAGES.slice(),
     committed_messages: COMMITTED_MESSAGES.slice(),
     secret_prover_blind: h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649'),
-    signer_blind: h2s(''),
     commit_mocked_random_scalars_options: {
       ...BLS12381_SHAKE256.commit_mocked_random_scalars_options,
       count: 7
-    },
-    signature_mocked_random_scalars_options:
-      BLS12381_SHAKE256.signature_mocked_random_scalars_options
+    }
   },
   output: {
     signature: h2b('823d5849764eff90d9d57252233dc4b2a694224f90d56cc81bcbcc0b3293096f3f4fdb309e06c1163a47bc61b681fdb149bf605aaf3ec89d0784e3cca39500d6acd0356d90c8ba6bef9ef6960bb60be1'),
@@ -261,10 +247,7 @@ BLS12381_SHAKE256.fixtures = [{
     header: h2b('11223344556677889900aabbccddeeff'),
     messages: MESSAGES.slice(),
     committed_messages: [],
-    secret_prover_blind: h2s(''),
-    signer_blind: h2s(''),
-    signature_mocked_random_scalars_options:
-      BLS12381_SHAKE256.signature_mocked_random_scalars_options
+    secret_prover_blind: h2s('')
   },
   output: {
     signature: h2b('abc558ec1e0899c9ad878d4fd19fe9d622920684038ecaf81488c1b67c1c49a6213f62674d08ac6eff67cf02b046ce4d4a70f7153dc7d6d4cbf17dc2a305acef53a4a4557ae63bdb87226df2e28df1d8'),
@@ -289,7 +272,6 @@ BLS12381_SHAKE256.fixtures = [{
     committed_messages: COMMITTED_MESSAGES.slice(),
     disclosed_commitment_indexes: [0, 1, 2, 3, 4],
     secret_prover_blind: h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649'),
-    signer_blind: h2s('49541deb67dc42d5509d39548637959bc43e105fff02c780a308c78e0a1e3c7f'),
     proof_mocked_random_scalars_options: {
       ...BLS12381_SHAKE256.proof_mocked_random_scalars_options,
       count: 6
@@ -309,7 +291,6 @@ BLS12381_SHAKE256.fixtures = [{
     committed_messages: COMMITTED_MESSAGES.slice(),
     disclosed_commitment_indexes: [0, 2, 4],
     secret_prover_blind: h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649'),
-    signer_blind: h2s('49541deb67dc42d5509d39548637959bc43e105fff02c780a308c78e0a1e3c7f'),
     proof_mocked_random_scalars_options: {
       ...BLS12381_SHAKE256.proof_mocked_random_scalars_options,
       count: 8
@@ -329,7 +310,6 @@ BLS12381_SHAKE256.fixtures = [{
     committed_messages: COMMITTED_MESSAGES.slice(),
     disclosed_commitment_indexes: [0, 1, 2, 3, 4],
     secret_prover_blind: h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649'),
-    signer_blind: h2s('49541deb67dc42d5509d39548637959bc43e105fff02c780a308c78e0a1e3c7f'),
     proof_mocked_random_scalars_options: {
       ...BLS12381_SHAKE256.proof_mocked_random_scalars_options,
       count: 11
@@ -349,7 +329,6 @@ BLS12381_SHAKE256.fixtures = [{
     committed_messages: COMMITTED_MESSAGES.slice(),
     disclosed_commitment_indexes: [0, 2, 4],
     secret_prover_blind: h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649'),
-    signer_blind: h2s('49541deb67dc42d5509d39548637959bc43e105fff02c780a308c78e0a1e3c7f'),
     proof_mocked_random_scalars_options: {
       ...BLS12381_SHAKE256.proof_mocked_random_scalars_options,
       count: 13
@@ -369,7 +348,6 @@ BLS12381_SHAKE256.fixtures = [{
     committed_messages: COMMITTED_MESSAGES.slice(),
     disclosed_commitment_indexes: [],
     secret_prover_blind: h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649'),
-    signer_blind: h2s('49541deb67dc42d5509d39548637959bc43e105fff02c780a308c78e0a1e3c7f'),
     proof_mocked_random_scalars_options: {
       ...BLS12381_SHAKE256.proof_mocked_random_scalars_options,
       count: 16
@@ -389,7 +367,6 @@ BLS12381_SHAKE256.fixtures = [{
     committed_messages: COMMITTED_MESSAGES.slice(),
     disclosed_commitment_indexes: [0, 2, 4],
     secret_prover_blind: h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649'),
-    signer_blind: h2s('49541deb67dc42d5509d39548637959bc43e105fff02c780a308c78e0a1e3c7f'),
     proof_mocked_random_scalars_options: {
       ...BLS12381_SHAKE256.proof_mocked_random_scalars_options,
       count: 18
@@ -409,7 +386,6 @@ BLS12381_SHAKE256.fixtures = [{
     committed_messages: COMMITTED_MESSAGES.slice(),
     disclosed_commitment_indexes: [],
     secret_prover_blind: h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649'),
-    signer_blind: h2s('49541deb67dc42d5509d39548637959bc43e105fff02c780a308c78e0a1e3c7f'),
     proof_mocked_random_scalars_options: {
       ...BLS12381_SHAKE256.proof_mocked_random_scalars_options,
       count: 21
@@ -429,7 +405,6 @@ BLS12381_SHAKE256.fixtures = [{
     committed_messages: [],
     disclosed_commitment_indexes: [],
     secret_prover_blind: h2s(''),
-    signer_blind: h2s(''),
     proof_mocked_random_scalars_options: {
       ...BLS12381_SHAKE256.proof_mocked_random_scalars_options,
       count: 11
