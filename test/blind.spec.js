@@ -6,7 +6,6 @@ import {
 } from '../lib/bbs/blind/interface.js';
 import chai from 'chai';
 import {CIPHERSUITES_TEST_VECTORS} from './blind-test-vectors.js';
-import {mocked_calculate_random_scalars} from '../lib/bbs/util.js';
 chai.should();
 
 const OPERATIONS = {
@@ -16,7 +15,7 @@ const OPERATIONS = {
   BlindProofVerify
 };
 
-describe('Blind BBS test vectors', () => {
+describe.only('Blind BBS test vectors', () => {
   const only = CIPHERSUITES_TEST_VECTORS.filter(tv => {
     return tv.fixtures.some(({only}) => only);
   });
@@ -49,25 +48,15 @@ async function BlindSignAndBlindVerify({
   messages = [],
   committed_messages,
   secret_prover_blind,
-  signer_blind,
-  ciphersuite,
-  signature_mocked_random_scalars_options
+  ciphersuite
 } = {}) {
-  if(signer_blind !== 0n) {
-    const [test_signer_blind] = await mocked_calculate_random_scalars({
-      ...signature_mocked_random_scalars_options, ciphersuite
-    });
-    test_signer_blind.should.eql(signer_blind);
-  }
   const signature = await BlindSign({
-    SK, PK, commitment_with_proof,
-    header, messages, signer_blind, ciphersuite
+    SK, PK, commitment_with_proof, header, messages, ciphersuite
   });
   const verified = await BlindVerify({
     PK, signature, header,
     messages, committed_messages,
     secret_prover_blind,
-    signer_blind,
     ciphersuite
   });
   return {signature, verified};
@@ -82,7 +71,6 @@ async function BlindVerifyAndBlindProofGen({
   messages = [], disclosed_indexes,
   committed_messages, disclosed_commitment_indexes,
   secret_prover_blind,
-  signer_blind,
   ciphersuite,
   proof_mocked_random_scalars_options
 } = {}) {
@@ -90,19 +78,21 @@ async function BlindVerifyAndBlindProofGen({
     PK, signature, header,
     messages, committed_messages,
     secret_prover_blind,
-    signer_blind,
     ciphersuite
   });
   verifyResult.should.equal(true);
-  return BlindProofGen({
+  const x = await BlindProofGen({
+  //return BlindProofGen({
     PK, signature,
     header, ph,
     messages, disclosed_indexes,
     committed_messages, disclosed_commitment_indexes,
-    secret_prover_blind, signer_blind,
+    secret_prover_blind,
     ciphersuite,
     mocked_random_scalars_options: proof_mocked_random_scalars_options
   });
+  console.log('x', Buffer.from(x).toString('hex'));
+  return x;
 }
 
 // runs `Commit`, `BlindSign`, then `BlindVerify`
@@ -113,10 +103,8 @@ async function CommitAndBlindSignAndBlindVerify({
   messages = [],
   committed_messages,
   secret_prover_blind,
-  signer_blind,
   ciphersuite,
-  commit_mocked_random_scalars_options,
-  signature_mocked_random_scalars_options
+  commit_mocked_random_scalars_options
 } = {}) {
   const commitResult = await Commit({
     committed_messages, ciphersuite,
@@ -124,21 +112,14 @@ async function CommitAndBlindSignAndBlindVerify({
   });
   commitResult[0].should.deep.eql(commitment_with_proof);
   commitResult[1].should.deep.eql(secret_prover_blind);
-  if(signer_blind !== 0n) {
-    const [test_signer_blind] = await mocked_calculate_random_scalars({
-      ...signature_mocked_random_scalars_options, ciphersuite
-    });
-    test_signer_blind.should.eql(signer_blind);
-  }
   const signature = await BlindSign({
     SK, PK, commitment_with_proof,
-    header, messages, signer_blind, ciphersuite
+    header, messages, ciphersuite
   });
   const verified = await BlindVerify({
     PK, signature, header,
     messages, committed_messages,
     secret_prover_blind,
-    signer_blind,
     ciphersuite
   });
   return {signature, verified};
