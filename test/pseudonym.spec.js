@@ -18,7 +18,7 @@ const OPERATIONS = {
   ProofVerifyWithPseudonym,
 };
 
-describe.skip('Pseudonym BBS test vectors', () => {
+describe.only('Pseudonym BBS test vectors', () => {
   const only = CIPHERSUITES_TEST_VECTORS.filter(tv => {
     return tv.fixtures.some(({only}) => only);
   });
@@ -95,7 +95,8 @@ async function PidVerifyAndProofGenWithPseudonym({
     api_id, ciphersuite
   });
   verifyResult.should.equal(true);
-  return ProofGenWithPseudonym({
+  const x = await ProofGenWithPseudonym({
+  //return ProofGenWithPseudonym({
     PK, signature,
     pseudonym, verifier_id, pid,
     header, ph,
@@ -103,4 +104,6 @@ async function PidVerifyAndProofGenWithPseudonym({
     api_id, ciphersuite,
     mocked_random_scalars_options: proof_mocked_random_scalars_options
   });
+  console.log('x', Buffer.from(x).toString('hex'));
+  return x;
 }
