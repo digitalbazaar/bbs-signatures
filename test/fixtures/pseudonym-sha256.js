@@ -16,6 +16,7 @@ export const BLS12381_SHA256 = {
   key_dst: h2b('4242535f424c53313233383147315f584d443a5348412d3235365f535357555f524f5f4832475f484d32535f4b455947454e5f4453545f'),
   SK: h2s('60e55110f76883a13d030b2f6bd11883422d5abde717569fc0731f51237169fc'),
   PK: h2b('a820f230f6ae38503b86c70dc50b61c58a77e45c39ab25c0652bbaa8fa136f2851bd4781c9dcde39fc9d1d52c9e60268061e7d7632171d91aa8d460acee0e96f1e7c4cfb12d3ff9ab5d5dc91c277db75c845d649ef3c4f63aebc364cd55ded0c'),
+  // FIXME: remove `pid` if no longer used
   pid: h2b('6830ea571e9fca0194d9ebd5c571369d8b81655afe0bbb9c6f5efe934f699418'),
   mocked_random_scalars_options: {
     seed: h2b('332e313431353932363533353839373933323338343632363433333833323739'),
@@ -39,6 +40,32 @@ export const BLS12381_SHA256 = {
 
 BLS12381_SHA256.fixtures = [{
   only: true,
+  name: 'Nym commitment with proof',
+  operation: 'NymCommit',
+  parameters: {
+    prover_nym: h2s('6830ea571e9fca0194d9ebd5c571369d8b81655afe0bbb9c6f5efe934f699418'),
+    committed_messages: [],
+    api_id: TEXT_ENCODER.encode(
+      BLS12381_SHA256.ciphersuite.ciphersuite_id + 'H2G_HM2S_PSEUDONYM_'),
+    mocked_random_scalars_options:
+      BLS12381_SHA256.commit_mocked_random_scalars_options
+  },
+  output: [
+    // commitment_with_proof
+    h2b('b989fc492e2047f602504eb3e236c0acb04224c77ad0d4cbd31c887b9eb05a1f27d7acfb266fe0ae062914bfa060984c5c2ac3247080eb71fefc7e9622ffae372425a699a298ba991a0bc5c6a3d9211347d0ce98d5c0550667269df1fb81f8fa30c07d4917c7c0786411ee5c05b00b9d501d3f8e244b860b7b11140cddc9787a3ab54ec7fd0a8950dae339f396f2641b'),
+    // secret_prover_blind
+    h2s('3ba0a2583bc7229fa9f2ae3a6697091032947c3a48f302b7fd2b08ca9d193041')
+  ],
+  debug: {
+    s_tilde: h2s('3a3b481c984f4396a13b1f65368aa393d08455fbfd351ab80f593aa5de8b4b1d'),
+    m_tildes: [
+      h2s('5e82a40ae25e65fb04d7722f36ecd62fa4f07c8815e74f0a14a7e0a6547a36ce')
+    ],
+    C: h2b('b989fc492e2047f602504eb3e236c0acb04224c77ad0d4cbd31c887b9eb05a1f27d7acfb266fe0ae062914bfa060984c'),
+    Cbar: h2b('af8152d30fc149adb48825795fc0bf51c509c584cb164a703252dd8857e6ffda60b1a82f1cd2277dff24dd002227bacf')
+  }
+}, {
+  // FIXME: old below
   name: 'Valid all-message signature',
   operation: 'PidSignAndVerify',
   parameters: {
@@ -95,7 +122,6 @@ BLS12381_SHA256.fixtures = [{
   },
   output: h2b('a48177347fd65ec55ebaf18a40e82292cfc9de91003dd9db2cfdceaf956ec3c1c096f8995d8b1f11800b20c5b62af5a4')
 }, {
-  only: true,
   name: 'Valid multi-message signature, multiple messages revealed proof',
   operation: 'PidVerifyAndProofGenWithPseudonym',
   parameters: {
@@ -129,7 +155,6 @@ BLS12381_SHA256.fixtures = [{
   // FIXME: fixture w/ blind generator + blind_factor `0` message
   output: h2b('916c5c458decd51aacaa3349f2e6bae5139448ed65d6435d06c31b0be41bf274022ed36ed6b75f23e5dae0f17f8f12c7b7fad4d8ded2da5ac519809bcb535174303e42eb7d596672b7bd1dc214a67d4b514be2f547b2c2e9c9adb805e6bb803082e0ccaff1487087c9a3545f7d790ec7652db866624246b5448e32b47ada85204fed3fc516cac44fe17f9612670346d655974f4676d7d5c90ac8dcd98bde88777dccf577b9ea43ccb4fd6d62080451e903a2759154c04bfe7ab73934c62c8a12b3f3db6f1c8fbc5f7c17882ad747f3c2589cf6cb015a6da1fd18f5b2280db3ad29bdceba8d5c3edeb937ac7f40e803f56ebdb57dcb602287a0cd7e3b5fbf888a1357257dab9ad27fc5785248bfe2769b67b8a5daefa7ceb828cfd2b3e2c66bf5b4fa14609cad53b1919b3f5cd5e83346375b4f38d6a9a3a163659c5a8fcaffc6889a3b32d1cbd0320fbac6074e30ca2c6c7e81e8e658f33b88cd72934c605579841dee4ece1a059e038f7d2b75a39940613b64845eddb04f6cf969143044a7b2dd196284fc154f202a04fff670d1ebc137f271ce12052b54e78be75e6c30a62d46c58d666714be82d9880ed4b639e3e055a0c02ac768d6dd502a9c52c61d3285d578064b24755cfe7711902b3bd463854c583e5e4fc913aa71989afc50cfd8c2024d64df96ed12c7ef82d50ed4d8bb1b429f1c281e27ea4472637371c5908621b1dbf2eeac1accda29b8cb5ee6352b27')
 }, {
-  only: true,
   name: 'Valid multi-message signature, multiple messages revealed proof',
   operation: 'ProofVerifyWithPseudonym',
   parameters: {
