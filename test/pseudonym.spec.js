@@ -1,9 +1,10 @@
 /*!
  * Copyright (c) 2023-2024 Digital Bazaar, Inc. All rights reserved.
  */
-import {BlindSign, BlindVerify, Commit} from '../lib/bbs/blind/interface.js';
+import {BlindSign, BlindVerify} from '../lib/bbs/blind/interface.js';
 import {
-  CalculatePseudonym, ProofGenWithPseudonym, ProofVerifyWithPseudonym
+  CalculatePseudonym, NymCommit,
+  ProofGenWithPseudonym, ProofVerifyWithPseudonym
 } from '../lib/bbs/pseudonym/interface.js';
 import chai from 'chai';
 import {CIPHERSUITES_TEST_VECTORS} from './pseudonym-test-vectors.js';
@@ -12,10 +13,12 @@ chai.should();
 
 const OPERATIONS = {
   CalculatePseudonym,
-  Commit,
-  PidSignAndVerify,
+  CommitAndBlindSignWithNymAndBlindVerify,
   PidVerifyAndProofGenWithPseudonym,
   ProofVerifyWithPseudonym,
+  // FIXME: remove `PidSignAndVerify`
+  PidSignAndVerify,
+  NymCommit
 };
 
 describe.only('Pseudonym BBS test vectors', () => {
@@ -43,33 +46,36 @@ describe.only('Pseudonym BBS test vectors', () => {
   }
 });
 
-// runs `BlindSign` w/`pid` and then `BlindVerify`
-async function PidSignAndVerify({
+// FIXME: remove me
+async function PidSignAndVerify() {}
+
+// runs `Commit`, `BlindSign`, then `BlindVerify`
+async function CommitAndBlindSignWithNymAndBlindVerify({
   SK, PK,
-  pid = new Uint8Array(),
+  commitment_with_proof,
   header = new Uint8Array(),
   messages = [],
+  prover_nym,
+  committed_messages,
   secret_prover_blind,
-  signer_blind,
-  api_id, ciphersuite,
-  signature_mocked_random_scalars_options
+  ciphersuite,
+  commit_mocked_random_scalars_options
 } = {}) {
-  if(signer_blind !== 0n) {
-    const [test_signer_blind] = await mocked_calculate_random_scalars({
-      ...signature_mocked_random_scalars_options, ciphersuite
-    });
-    test_signer_blind.should.eql(signer_blind);
-  }
-  messages = [...messages, pid];
+  const commitResult = await NymCommit({
+    prover_nym, committed_messages, ciphersuite,
+    mocked_random_scalars_options: commit_mocked_random_scalars_options
+  });
+  commitResult[0].should.deep.eql(commitment_with_proof);
+  commitResult[1].should.deep.eql(secret_prover_blind);
   const signature = await BlindSign({
-    SK, PK, header, messages, signer_blind, api_id, ciphersuite
+    SK, PK, commitment_with_proof,
+    header, messages, ciphersuite
   });
   const verified = await BlindVerify({
     PK, signature, header,
-    messages, committed_messages: [],
+    messages, committed_messages,
     secret_prover_blind,
-    signer_blind,
-    api_id, ciphersuite
+    ciphersuite
   });
   return {signature, verified};
 }
