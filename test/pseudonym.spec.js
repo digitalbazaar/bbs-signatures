@@ -20,7 +20,8 @@ const OPERATIONS = {
   // FIXME: remove `PidSignAndVerify`
   PidSignAndVerify,
   NymCommit,
-  NymCommitAndBlindSignWithNymAndBlindVerify
+  NymCommitAndBlindSignWithNymAndBlindVerify,
+  NymProofGenAndProofVerify
 };
 
 describe.only('Pseudonym BBS test vectors', () => {
@@ -90,6 +91,66 @@ async function NymCommitAndBlindSignWithNymAndBlindVerify({
   });
   computed_secret.should.deep.eql(nym_secret);
   return {signature, verified};
+}
+
+// runs proof gen => proof verify
+async function NymProofGenAndProofVerify({
+  PK,
+  signature,
+  header = new Uint8Array(),
+  ph = new Uint8Array(),
+  messages = [],
+  committed_messages,
+  signer_nym_entropy,
+  prover_nym,
+  secret_prover_blind,
+  nym_secret,
+  pseudonym,
+  context_id,
+  L,
+  disclosed_messages, disclosed_indexes,
+  disclosed_committed_messages, disclosed_commitment_indexes,
+  api_id,
+  ciphersuite,
+  mocked_random_scalars_options
+} = {}) {
+  const {
+    verified: signatureVerified, nym_secret: computed_secret
+  } = await BlindVerifyWithNym({
+    PK, signature, header,
+    messages, committed_messages,
+    prover_nym, signer_nym_entropy,
+    secret_prover_blind,
+    api_id, ciphersuite
+  });
+  signatureVerified.should.equal(true);
+  computed_secret.should.deep.eql(nym_secret);
+
+  const {proof, pseudonym: computed_pseudonym} = await ProofGenWithPseudonym({
+    PK, signature,
+    header, ph,
+    nym_secret, context_id,
+    messages, disclosed_indexes,
+    committed_messages, disclosed_commitment_indexes,
+    secret_prover_blind,
+    api_id, ciphersuite,
+    mocked_random_scalars_options
+  });
+  computed_pseudonym.should.deep.eql(pseudonym);
+
+  const verified = ProofVerifyWithPseudonym({
+    PK, proof,
+    header,
+    ph,
+    pseudonym, context_id,
+    L,
+    disclosed_messages,
+    disclosed_committed_messages,
+    disclosed_indexes,
+    disclosed_commitment_indexes,
+    api_id, ciphersuite
+  });
+  return {proof, verified};
 }
 
 // runs `BlindVerify` w/`pid` and `ProofGenWithPseudonym`
