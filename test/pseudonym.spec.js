@@ -1,8 +1,9 @@
 /*!
- * Copyright (c) 2023-2024 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2023-2025 Digital Bazaar, Inc. All rights reserved.
  */
 import {BlindSign, BlindVerify} from '../lib/bbs/blind/interface.js';
 import {
+  BlindSignWithNym, BlindVerifyWithNym,
   CalculatePseudonym, NymCommit,
   ProofGenWithPseudonym, ProofVerifyWithPseudonym
 } from '../lib/bbs/pseudonym/interface.js';
@@ -18,7 +19,8 @@ const OPERATIONS = {
   ProofVerifyWithPseudonym,
   // FIXME: remove `PidSignAndVerify`
   PidSignAndVerify,
-  NymCommit
+  NymCommit,
+  NymCommitAndBlindSignWithNymAndBlindVerify
 };
 
 describe.only('Pseudonym BBS test vectors', () => {
@@ -48,35 +50,45 @@ describe.only('Pseudonym BBS test vectors', () => {
 
 // FIXME: remove me
 async function PidSignAndVerify() {}
+async function CommitAndBlindSignWithNymAndBlindVerify() {}
 
-// runs `Commit`, `BlindSign`, then `BlindVerify`
-async function CommitAndBlindSignWithNymAndBlindVerify({
+// runs `NymCommit`, `BlindSign`, then `BlindVerify`
+async function NymCommitAndBlindSignWithNymAndBlindVerify({
   SK, PK,
+  prover_nym,
   commitment_with_proof,
   header = new Uint8Array(),
   messages = [],
-  prover_nym,
-  committed_messages,
+  committed_messages = [],
+  signer_nym_entropy,
   secret_prover_blind,
+  nym_secret,
+  api_id,
   ciphersuite,
-  commit_mocked_random_scalars_options
+  mocked_random_scalars_options
 } = {}) {
   const commitResult = await NymCommit({
-    prover_nym, committed_messages, ciphersuite,
-    mocked_random_scalars_options: commit_mocked_random_scalars_options
+    prover_nym, committed_messages,
+    api_id, ciphersuite,
+    mocked_random_scalars_options
   });
   commitResult[0].should.deep.eql(commitment_with_proof);
   commitResult[1].should.deep.eql(secret_prover_blind);
-  const signature = await BlindSign({
-    SK, PK, commitment_with_proof,
-    header, messages, ciphersuite
+  const signature = await BlindSignWithNym({
+    SK, PK,
+    commitment_with_proof,
+    header, messages,
+    signer_nym_entropy,
+    api_id, ciphersuite
   });
-  const verified = await BlindVerify({
+  const {verified, nym_secret: computed_secret} = await BlindVerifyWithNym({
     PK, signature, header,
     messages, committed_messages,
+    prover_nym, signer_nym_entropy,
     secret_prover_blind,
-    ciphersuite
+    api_id, ciphersuite
   });
+  computed_secret.should.deep.eql(nym_secret);
   return {signature, verified};
 }
 
