@@ -27,12 +27,6 @@ export const BLS12381_SHA256 = {
     seed: h2b('332e313431353932363533353839373933323338343632363433333833323739'),
     dst: TEXT_ENCODER.encode('BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_COMMIT_MOCK_RANDOM_SCALARS_DST_')
   },
-  // FIXME: remove if no longer needed
-  signature_mocked_random_scalars_options: {
-    seed: h2b('332e313431353932363533353839373933323338343632363433333833323739'),
-    dst: TEXT_ENCODER.encode('BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_SIGNATURE_MOCK_RANDOM_SCALARS_DST_'),
-    count: 1
-  },
   proof_mocked_random_scalars_options: {
     seed: h2b('332e313431353932363533353839373933323338343632363433333833323739'),
     dst: TEXT_ENCODER.encode('BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_PROOF_MOCK_RANDOM_SCALARS_DST_')
@@ -84,34 +78,35 @@ BLS12381_SHA256.fixtures = [{
     h2s('15494ae70742a6a4f420106c79ee405c138557385f3f6f7256449d147ebf22b8')
   ]
 }, {
-  // FIXME: old below
-  name: 'Valid all-message signature',
-  operation: 'PidSignAndVerify',
+  only: true,
+  name: 'valid no prover committed messages, no signer messages signature',
+  operation: 'NymCommitAndBlindSignWithNymAndBlindVerify',
   parameters: {
     SK: BLS12381_SHA256.SK,
     PK: BLS12381_SHA256.PK,
-    pid: BLS12381_SHA256.pid,
+    prover_nym: h2s('6830ea571e9fca0194d9ebd5c571369d8b81655afe0bbb9c6f5efe934f699418'),
+    commitment_with_proof: h2b('b989fc492e2047f602504eb3e236c0acb04224c77ad0d4cbd31c887b9eb05a1f27d7acfb266fe0ae062914bfa060984c5c2ac3247080eb71fefc7e9622ffae372425a699a298ba991a0bc5c6a3d9211347d0ce98d5c0550667269df1fb81f8fa30c07d4917c7c0786411ee5c05b00b9d501d3f8e244b860b7b11140cddc9787a3ab54ec7fd0a8950dae339f396f2641b'),
     header: h2b('11223344556677889900aabbccddeeff'),
-    messages: MESSAGES.slice(),
-    secret_prover_blind: h2s(''),
-    signer_blind: h2s(''),
+    messages: [],
+    committed_messages: [],
+    signer_nym_entropy: h2s('3d40961fce6c09eec24a371322732932503b458d7a4cf7891bdaa765b30027c5'),
+    secret_prover_blind: h2s('3ba0a2583bc7229fa9f2ae3a6697091032947c3a48f302b7fd2b08ca9d193041'),
+    nym_secret: h2s('3183d923c36e56a823ea4ae0de4287ca87ff06e5785a57268b39a5fa0269bbdc'),
     api_id: TEXT_ENCODER.encode(
       BLS12381_SHA256.ciphersuite.ciphersuite_id + 'H2G_HM2S_PSEUDONYM_'),
-    signature_mocked_random_scalars_options:
-      BLS12381_SHA256.signature_mocked_random_scalars_options
+    mocked_random_scalars_options:
+      BLS12381_SHA256.commit_mocked_random_scalars_options
   },
   output: {
-    // FIXME: test fixture
-    signature: h2b('ad5d4ff88f21c3995c5ffffe85c3cf12c1da9af6569f7cf498b59bb6bbcb792abd739abf28ecad3afc7f31f43c1c496c63a9a7b292fadf8d31045a70d700ef26fa83bc4f4c4cbb83d63934b5cb521c23'),
-    // FIXME: adjusted adding signer_blind message
-    //signature: h2b('b302996d200d0d1b2c33cb6e3850c29d8adc45611940d5a3cf41ade6d73f540b4704fe0a8c187a75f855606ab298c5065d8bba2dd9ff1ace41b1d611f7300bcfedba0fb21dd0ff43ff1a8de855ad0501'),
+    signature: h2b('8e0595c93044ff2da97c466418ea0eb8648f1ed5cb040f90decb338810c5db168a464eacba02eb9dec7659920e59409a1faff9a30512ac66886db438787b463125e08e5aeaf4f4467a066dbd1520a984'),
     verified: true
   },
   debug: {
-    B: h2b('b822ddc4e5f6f7e6926322c1b973614fc93366eb0eafb7de44c72a2b5cd8109f61c698d42c959aac590c6e05b74b5b1e'),
-    domain: h2b('4e81a5edde18cd1368634f05b596ac9965d06981f8e9c21d2272593883852603')
+    B: h2b('806cd9006d8c4426821c51b6620b1bac7bb33bb349338883b1cf945d192c1013b3660641a777ee67adc14f04d568b761'),
+    domain: h2b('728c2ba4c6e6a7b42c3e17c95bdf6ac83eacddd27a57dc681fbca0601c9fb317')
   }
 }, {
+  // FIXME: old below
   name: 'Pid as committed message commitment with proof',
   operation: 'Commit',
   parameters: {
