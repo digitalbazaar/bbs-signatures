@@ -106,6 +106,90 @@ BLS12381_SHA256.fixtures = [{
     domain: h2b('728c2ba4c6e6a7b42c3e17c95bdf6ac83eacddd27a57dc681fbca0601c9fb317')
   }
 }, {
+  only: true,
+  name: 'valid multi prover committed messages, no signer messages signature',
+  operation: 'NymCommitAndBlindSignWithNymAndBlindVerify',
+  parameters: {
+    SK: BLS12381_SHA256.SK,
+    PK: BLS12381_SHA256.PK,
+    prover_nym: h2s('6830ea571e9fca0194d9ebd5c571369d8b81655afe0bbb9c6f5efe934f699418'),
+    commitment_with_proof: h2b('99efccc0ccd91efabb8821ee33edacb823b1dd999682aaa54f38a9c4585e7e7aa746357b2842d38c008f6d732dd501c70eed41caf3eafdd4bb6151ce2c0289401c7d13381e7db90137d7aa2a64224aa2499a4548b2654481a2f0dd16d799116fe41db7b7a5c3ae8b1c64bef6a89a46f5040a5178d2e1126f7f35189f0f6cea3803e679ce92eff73856b164425ac4ff8405a934f65ada8ccbe21558ab66db113662ea17ce0c9aa0280db20dcf79301c61269ddfdbdcc22025b85f7089c4ebebc224a938b745daae833ac4698d9d32bfa8382b4bbb2679ae232d2f6e8e19239e6ea919665ea736b45a61bbd0e4f4d7431f3038c3db25833b9a0cc1a7709419ac241fb6f02ee13e51101743f1983d3fa69b5d344b984c48a265ee6a7b0df8450004ceec7c1997b859be16af624e3da2cf44'),
+    header: h2b('11223344556677889900aabbccddeeff'),
+    messages: [],
+    committed_messages: COMMITTED_MESSAGES.slice(),
+    signer_nym_entropy: h2s('3d40961fce6c09eec24a371322732932503b458d7a4cf7891bdaa765b30027c5'),
+    secret_prover_blind: h2s('15494ae70742a6a4f420106c79ee405c138557385f3f6f7256449d147ebf22b8'),
+    nym_secret: h2s('3183d923c36e56a823ea4ae0de4287ca87ff06e5785a57268b39a5fa0269bbdc'),
+    api_id: TEXT_ENCODER.encode(
+      BLS12381_SHA256.ciphersuite.ciphersuite_id + 'H2G_HM2S_PSEUDONYM_'),
+    mocked_random_scalars_options:
+      BLS12381_SHA256.commit_mocked_random_scalars_options
+  },
+  output: {
+    signature: h2b('b30fcb3c30a7eb5a864fadc88e2cdbce2b42bb9400b844a21e5d7ff0713f3cbdf1a082572247d447fb3848bc41dfc6d73840c7e56d0f869c4bee08aebc411e8b93b396734c96f26a4b7a708a403ff2c9'),
+    verified: true
+  },
+  debug: {
+    B: h2b('b8a96f809bf8bd7081461e4ce151e4951e68e2d3210a6f59a998ef84df0f6bfdf09ab0fd0015f72378549bb53b82c38e'),
+    domain: h2b('1c63c8a9f1c732382f4803e13188d2e433a67afcd59913eeddb4082a3a832dad')
+  }
+}, {
+  only: true,
+  name: 'valid no prover committed messages, multiple signer messages signature',
+  operation: 'NymCommitAndBlindSignWithNymAndBlindVerify',
+  parameters: {
+    SK: BLS12381_SHA256.SK,
+    PK: BLS12381_SHA256.PK,
+    prover_nym: h2s('6830ea571e9fca0194d9ebd5c571369d8b81655afe0bbb9c6f5efe934f699418'),
+    commitment_with_proof: h2b('b989fc492e2047f602504eb3e236c0acb04224c77ad0d4cbd31c887b9eb05a1f27d7acfb266fe0ae062914bfa060984c5c2ac3247080eb71fefc7e9622ffae372425a699a298ba991a0bc5c6a3d9211347d0ce98d5c0550667269df1fb81f8fa30c07d4917c7c0786411ee5c05b00b9d501d3f8e244b860b7b11140cddc9787a3ab54ec7fd0a8950dae339f396f2641b'),
+    header: h2b('11223344556677889900aabbccddeeff'),
+    messages: MESSAGES.slice(),
+    committed_messages: [],
+    signer_nym_entropy: h2s('3d40961fce6c09eec24a371322732932503b458d7a4cf7891bdaa765b30027c5'),
+    secret_prover_blind: h2s('3ba0a2583bc7229fa9f2ae3a6697091032947c3a48f302b7fd2b08ca9d193041'),
+    nym_secret: h2s('3183d923c36e56a823ea4ae0de4287ca87ff06e5785a57268b39a5fa0269bbdc'),
+    api_id: TEXT_ENCODER.encode(
+      BLS12381_SHA256.ciphersuite.ciphersuite_id + 'H2G_HM2S_PSEUDONYM_'),
+    mocked_random_scalars_options:
+      BLS12381_SHA256.commit_mocked_random_scalars_options
+  },
+  output: {
+    signature: h2b('a8c362043de23de5331483e510aafca643d7d1ace1b50003f4cc0eb250868531d401e0d3af8a35dc596ef209f41b4f6f28f5c63f8a096e2a3072633fa624872c3f6f41fb5121b354ad7d0c0ea07e0f2f'),
+    verified: true
+  },
+  debug: {
+    B: h2b('a1abe3d14bd71b236c003fc1b69930dfa1cbe4f44db047bfddb5fd5c3b5a40b15c0ad364afce854089faa407a8cf8170'),
+    domain: h2b('1336f81ac1181906aa77be751b7be985adb49616287ef2f1e4b8ac7771bb6195')
+  }
+}, {
+  only: true,
+  name: 'valid multiple signer and prover committed messages signature',
+  operation: 'NymCommitAndBlindSignWithNymAndBlindVerify',
+  parameters: {
+    SK: BLS12381_SHA256.SK,
+    PK: BLS12381_SHA256.PK,
+    prover_nym: h2s('6830ea571e9fca0194d9ebd5c571369d8b81655afe0bbb9c6f5efe934f699418'),
+    commitment_with_proof: h2b('99efccc0ccd91efabb8821ee33edacb823b1dd999682aaa54f38a9c4585e7e7aa746357b2842d38c008f6d732dd501c70eed41caf3eafdd4bb6151ce2c0289401c7d13381e7db90137d7aa2a64224aa2499a4548b2654481a2f0dd16d799116fe41db7b7a5c3ae8b1c64bef6a89a46f5040a5178d2e1126f7f35189f0f6cea3803e679ce92eff73856b164425ac4ff8405a934f65ada8ccbe21558ab66db113662ea17ce0c9aa0280db20dcf79301c61269ddfdbdcc22025b85f7089c4ebebc224a938b745daae833ac4698d9d32bfa8382b4bbb2679ae232d2f6e8e19239e6ea919665ea736b45a61bbd0e4f4d7431f3038c3db25833b9a0cc1a7709419ac241fb6f02ee13e51101743f1983d3fa69b5d344b984c48a265ee6a7b0df8450004ceec7c1997b859be16af624e3da2cf44'),
+    header: h2b('11223344556677889900aabbccddeeff'),
+    messages: MESSAGES.slice(),
+    committed_messages: COMMITTED_MESSAGES.slice(),
+    signer_nym_entropy: h2s('3d40961fce6c09eec24a371322732932503b458d7a4cf7891bdaa765b30027c5'),
+    secret_prover_blind: h2s('15494ae70742a6a4f420106c79ee405c138557385f3f6f7256449d147ebf22b8'),
+    nym_secret: h2s('3183d923c36e56a823ea4ae0de4287ca87ff06e5785a57268b39a5fa0269bbdc'),
+    api_id: TEXT_ENCODER.encode(
+      BLS12381_SHA256.ciphersuite.ciphersuite_id + 'H2G_HM2S_PSEUDONYM_'),
+    mocked_random_scalars_options:
+      BLS12381_SHA256.commit_mocked_random_scalars_options
+  },
+  output: {
+    signature: h2b('99f409633ab1140121a94508a25d3ef7fe9d7da3559408502e81331f80cbddb621a99c02b6bab14c44aaf35b19006a1d0a91f0ac5a47b9c0a99a290c3f36debe34c00ca333a9006e769b4930e39210c8'),
+    verified: true
+  },
+  debug: {
+    B: h2b('91437a9b859b8623ef0990ea1b07fc6951338042565dd4f9c59f46d95eec8cf72db31aacba6b1b2c958c22c47ee238ae'),
+    domain: h2b('4508e372d4ede742110dbcbc3e0c0d286f6d7388827b98805f7b62ad17678d93')
+  }
+}, {
   // FIXME: old below
   name: 'Pid as committed message commitment with proof',
   operation: 'Commit',
