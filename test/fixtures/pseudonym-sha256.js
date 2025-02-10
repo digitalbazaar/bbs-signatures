@@ -1,7 +1,8 @@
 /*!
- * Copyright (c) 2023-2024 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2023-2025 Digital Bazaar, Inc. All rights reserved.
  */
 import {
+  COMMITTED_MESSAGES,
   h2b, h2s,
   MESSAGES,
   TEXT_ENCODER
@@ -40,7 +41,7 @@ export const BLS12381_SHA256 = {
 
 BLS12381_SHA256.fixtures = [{
   only: true,
-  name: 'Nym commitment with proof',
+  name: 'valid no committed messages commitment with proof',
   operation: 'NymCommit',
   parameters: {
     prover_nym: h2s('6830ea571e9fca0194d9ebd5c571369d8b81655afe0bbb9c6f5efe934f699418'),
@@ -64,6 +65,24 @@ BLS12381_SHA256.fixtures = [{
     C: h2b('b989fc492e2047f602504eb3e236c0acb04224c77ad0d4cbd31c887b9eb05a1f27d7acfb266fe0ae062914bfa060984c'),
     Cbar: h2b('af8152d30fc149adb48825795fc0bf51c509c584cb164a703252dd8857e6ffda60b1a82f1cd2277dff24dd002227bacf')
   }
+}, {
+  only: true,
+  name: 'valid multiple committed messages commitment with proof',
+  operation: 'NymCommit',
+  parameters: {
+    prover_nym: h2s('6830ea571e9fca0194d9ebd5c571369d8b81655afe0bbb9c6f5efe934f699418'),
+    committed_messages: COMMITTED_MESSAGES.slice(),
+    api_id: TEXT_ENCODER.encode(
+      BLS12381_SHA256.ciphersuite.ciphersuite_id + 'H2G_HM2S_PSEUDONYM_'),
+    mocked_random_scalars_options:
+      BLS12381_SHA256.commit_mocked_random_scalars_options
+  },
+  output: [
+    // commitment_with_proof
+    h2b('99efccc0ccd91efabb8821ee33edacb823b1dd999682aaa54f38a9c4585e7e7aa746357b2842d38c008f6d732dd501c70eed41caf3eafdd4bb6151ce2c0289401c7d13381e7db90137d7aa2a64224aa2499a4548b2654481a2f0dd16d799116fe41db7b7a5c3ae8b1c64bef6a89a46f5040a5178d2e1126f7f35189f0f6cea3803e679ce92eff73856b164425ac4ff8405a934f65ada8ccbe21558ab66db113662ea17ce0c9aa0280db20dcf79301c61269ddfdbdcc22025b85f7089c4ebebc224a938b745daae833ac4698d9d32bfa8382b4bbb2679ae232d2f6e8e19239e6ea919665ea736b45a61bbd0e4f4d7431f3038c3db25833b9a0cc1a7709419ac241fb6f02ee13e51101743f1983d3fa69b5d344b984c48a265ee6a7b0df8450004ceec7c1997b859be16af624e3da2cf44'),
+    // secret_prover_blind
+    h2s('15494ae70742a6a4f420106c79ee405c138557385f3f6f7256449d147ebf22b8')
+  ]
 }, {
   // FIXME: old below
   name: 'Valid all-message signature',
