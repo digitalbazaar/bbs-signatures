@@ -55,13 +55,16 @@ async function NymCommitAndBlindSignWithNymAndBlindVerify({
   ciphersuite,
   mocked_random_scalars_options
 } = {}) {
-  const commitResult = await NymCommit({
+  const {
+    commitment_with_proof: calculatedCommitment,
+    secret_prover_blind: calculatedSecretProverBlind
+  } = await NymCommit({
     prover_nym, committed_messages,
     api_id, ciphersuite,
     mocked_random_scalars_options
   });
-  commitResult[0].should.deep.eql(commitment_with_proof);
-  commitResult[1].should.deep.eql(secret_prover_blind);
+  calculatedCommitment.should.deep.eql(commitment_with_proof);
+  calculatedSecretProverBlind.should.deep.eql(secret_prover_blind);
   const signature = await BlindSignWithNym({
     SK, PK,
     commitment_with_proof,

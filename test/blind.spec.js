@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2023-2024 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2023-2025 Digital Bazaar, Inc. All rights reserved.
  */
 import {
   BlindProofGen, BlindProofVerify, BlindSign, BlindVerify, Commit
@@ -15,7 +15,7 @@ const OPERATIONS = {
   BlindProofVerify
 };
 
-describe.skip('Blind BBS test vectors', () => {
+describe.only('Blind BBS test vectors', () => {
   const only = CIPHERSUITES_TEST_VECTORS.filter(tv => {
     return tv.fixtures.some(({only}) => only);
   });
@@ -81,8 +81,7 @@ async function BlindVerifyAndBlindProofGen({
     ciphersuite
   });
   verifyResult.should.equal(true);
-  const x = await BlindProofGen({
-  //return BlindProofGen({
+  return BlindProofGen({
     PK, signature,
     header, ph,
     messages, disclosed_indexes,
@@ -91,8 +90,6 @@ async function BlindVerifyAndBlindProofGen({
     ciphersuite,
     mocked_random_scalars_options: proof_mocked_random_scalars_options
   });
-  console.log('x', Buffer.from(x).toString('hex'));
-  return x;
 }
 
 // runs `Commit`, `BlindSign`, then `BlindVerify`
@@ -106,12 +103,15 @@ async function CommitAndBlindSignAndBlindVerify({
   ciphersuite,
   commit_mocked_random_scalars_options
 } = {}) {
-  const commitResult = await Commit({
+  const {
+    commitment_with_proof: calculatedCommitment,
+    secret_prover_blind: calculatedSecretProverBlind
+  } = await Commit({
     committed_messages, ciphersuite,
     mocked_random_scalars_options: commit_mocked_random_scalars_options
   });
-  commitResult[0].should.deep.eql(commitment_with_proof);
-  commitResult[1].should.deep.eql(secret_prover_blind);
+  calculatedCommitment.should.deep.eql(commitment_with_proof);
+  calculatedSecretProverBlind.should.deep.eql(secret_prover_blind);
   const signature = await BlindSign({
     SK, PK, commitment_with_proof,
     header, messages, ciphersuite
