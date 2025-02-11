@@ -30,8 +30,6 @@ BLS12381_SHA256.fixtures = [{
   parameters: {
     prover_nym: h2s('6830ea571e9fca0194d9ebd5c571369d8b81655afe0bbb9c6f5efe934f699418'),
     committed_messages: [],
-    api_id: TEXT_ENCODER.encode(
-      BLS12381_SHA256.ciphersuite.ciphersuite_id + 'H2G_HM2S_PSEUDONYM_'),
     mocked_random_scalars_options:
       BLS12381_SHA256.commit_mocked_random_scalars_options
   },
@@ -53,8 +51,6 @@ BLS12381_SHA256.fixtures = [{
   parameters: {
     prover_nym: h2s('6830ea571e9fca0194d9ebd5c571369d8b81655afe0bbb9c6f5efe934f699418'),
     committed_messages: COMMITTED_MESSAGES.slice(),
-    api_id: TEXT_ENCODER.encode(
-      BLS12381_SHA256.ciphersuite.ciphersuite_id + 'H2G_HM2S_PSEUDONYM_'),
     mocked_random_scalars_options:
       BLS12381_SHA256.commit_mocked_random_scalars_options
   },
@@ -76,8 +72,6 @@ BLS12381_SHA256.fixtures = [{
     signer_nym_entropy: h2s('3d40961fce6c09eec24a371322732932503b458d7a4cf7891bdaa765b30027c5'),
     secret_prover_blind: h2s('3ba0a2583bc7229fa9f2ae3a6697091032947c3a48f302b7fd2b08ca9d193041'),
     nym_secret: h2s('3183d923c36e56a823ea4ae0de4287ca87ff06e5785a57268b39a5fa0269bbdc'),
-    api_id: TEXT_ENCODER.encode(
-      BLS12381_SHA256.ciphersuite.ciphersuite_id + 'H2G_HM2S_PSEUDONYM_'),
     mocked_random_scalars_options:
       BLS12381_SHA256.commit_mocked_random_scalars_options
   },
@@ -103,8 +97,6 @@ BLS12381_SHA256.fixtures = [{
     signer_nym_entropy: h2s('3d40961fce6c09eec24a371322732932503b458d7a4cf7891bdaa765b30027c5'),
     secret_prover_blind: h2s('15494ae70742a6a4f420106c79ee405c138557385f3f6f7256449d147ebf22b8'),
     nym_secret: h2s('3183d923c36e56a823ea4ae0de4287ca87ff06e5785a57268b39a5fa0269bbdc'),
-    api_id: TEXT_ENCODER.encode(
-      BLS12381_SHA256.ciphersuite.ciphersuite_id + 'H2G_HM2S_PSEUDONYM_'),
     mocked_random_scalars_options:
       BLS12381_SHA256.commit_mocked_random_scalars_options
   },
@@ -130,8 +122,6 @@ BLS12381_SHA256.fixtures = [{
     signer_nym_entropy: h2s('3d40961fce6c09eec24a371322732932503b458d7a4cf7891bdaa765b30027c5'),
     secret_prover_blind: h2s('3ba0a2583bc7229fa9f2ae3a6697091032947c3a48f302b7fd2b08ca9d193041'),
     nym_secret: h2s('3183d923c36e56a823ea4ae0de4287ca87ff06e5785a57268b39a5fa0269bbdc'),
-    api_id: TEXT_ENCODER.encode(
-      BLS12381_SHA256.ciphersuite.ciphersuite_id + 'H2G_HM2S_PSEUDONYM_'),
     mocked_random_scalars_options:
       BLS12381_SHA256.commit_mocked_random_scalars_options
   },
@@ -157,8 +147,6 @@ BLS12381_SHA256.fixtures = [{
     signer_nym_entropy: h2s('3d40961fce6c09eec24a371322732932503b458d7a4cf7891bdaa765b30027c5'),
     secret_prover_blind: h2s('15494ae70742a6a4f420106c79ee405c138557385f3f6f7256449d147ebf22b8'),
     nym_secret: h2s('3183d923c36e56a823ea4ae0de4287ca87ff06e5785a57268b39a5fa0269bbdc'),
-    api_id: TEXT_ENCODER.encode(
-      BLS12381_SHA256.ciphersuite.ciphersuite_id + 'H2G_HM2S_PSEUDONYM_'),
     mocked_random_scalars_options:
       BLS12381_SHA256.commit_mocked_random_scalars_options
   },
@@ -191,10 +179,6 @@ BLS12381_SHA256.fixtures = [{
     disclosed_indexes: [...MESSAGES.keys()],
     disclosed_committed_messages: COMMITTED_MESSAGES.slice(),
     disclosed_commitment_indexes: [...COMMITTED_MESSAGES.keys()],
-    // FIXME: add `H2G_HM2S_PSEUDONYM_` by default to pseudonym interfaces
-    // and then retest
-    api_id: TEXT_ENCODER.encode(
-      BLS12381_SHA256.ciphersuite.ciphersuite_id + 'H2G_HM2S_PSEUDONYM_'),
     mocked_random_scalars_options:
       BLS12381_SHA256.proof_mocked_random_scalars_options
   },
@@ -227,8 +211,6 @@ BLS12381_SHA256.fixtures = [{
       COMMITTED_MESSAGES[4]
     ],
     disclosed_commitment_indexes: [0, 2, 4],
-    api_id: TEXT_ENCODER.encode(
-      BLS12381_SHA256.ciphersuite.ciphersuite_id + 'H2G_HM2S_PSEUDONYM_'),
     mocked_random_scalars_options:
       BLS12381_SHA256.proof_mocked_random_scalars_options
   },
@@ -263,8 +245,6 @@ BLS12381_SHA256.fixtures = [{
     disclosed_indexes: [0, 2, 4, 6, 8],
     disclosed_committed_messages: COMMITTED_MESSAGES.slice(),
     disclosed_commitment_indexes: [...COMMITTED_MESSAGES.keys()],
-    api_id: TEXT_ENCODER.encode(
-      BLS12381_SHA256.ciphersuite.ciphersuite_id + 'H2G_HM2S_PSEUDONYM_'),
     mocked_random_scalars_options:
       BLS12381_SHA256.proof_mocked_random_scalars_options
   },
@@ -303,8 +283,6 @@ BLS12381_SHA256.fixtures = [{
       COMMITTED_MESSAGES[4]
     ],
     disclosed_commitment_indexes: [0, 2, 4],
-    api_id: TEXT_ENCODER.encode(
-      BLS12381_SHA256.ciphersuite.ciphersuite_id + 'H2G_HM2S_PSEUDONYM_'),
     mocked_random_scalars_options:
       BLS12381_SHA256.proof_mocked_random_scalars_options
   },
@@ -339,8 +317,6 @@ BLS12381_SHA256.fixtures = [{
     disclosed_indexes: [0, 2, 4, 6, 8],
     disclosed_committed_messages: [],
     disclosed_commitment_indexes: [],
-    api_id: TEXT_ENCODER.encode(
-      BLS12381_SHA256.ciphersuite.ciphersuite_id + 'H2G_HM2S_PSEUDONYM_'),
     mocked_random_scalars_options:
       BLS12381_SHA256.proof_mocked_random_scalars_options
   },
@@ -373,8 +349,6 @@ BLS12381_SHA256.fixtures = [{
       COMMITTED_MESSAGES[4]
     ],
     disclosed_commitment_indexes: [0, 2, 4],
-    api_id: TEXT_ENCODER.encode(
-      BLS12381_SHA256.ciphersuite.ciphersuite_id + 'H2G_HM2S_PSEUDONYM_'),
     mocked_random_scalars_options:
       BLS12381_SHA256.proof_mocked_random_scalars_options
   },
@@ -403,8 +377,6 @@ BLS12381_SHA256.fixtures = [{
     disclosed_indexes: [],
     disclosed_committed_messages: [],
     disclosed_commitment_indexes: [],
-    api_id: TEXT_ENCODER.encode(
-      BLS12381_SHA256.ciphersuite.ciphersuite_id + 'H2G_HM2S_PSEUDONYM_'),
     mocked_random_scalars_options:
       BLS12381_SHA256.proof_mocked_random_scalars_options
   },
