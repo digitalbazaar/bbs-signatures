@@ -182,7 +182,6 @@ BLS12381_SHA256.fixtures = [{
     domain: h2b('4508e372d4ede742110dbcbc3e0c0d286f6d7388827b98805f7b62ad17678d93')
   }
 }, {
-  only: true,
   name: 'valid all prover committed messages and signer messages revealed proof',
   operation: 'NymProofGenAndProofVerify',
   parameters: {
@@ -215,7 +214,6 @@ BLS12381_SHA256.fixtures = [{
     verified: true
   }
 }, {
-  only: true,
   name: 'valid half prover committed messages and all signer messages revealed proof',
   operation: 'NymProofGenAndProofVerify',
   parameters: {
@@ -250,7 +248,6 @@ BLS12381_SHA256.fixtures = [{
     verified: true
   }
 }, {
-  only: true,
   name: 'valid all prover committed messages and half signer messages revealed proof',
   operation: 'NymProofGenAndProofVerify',
   parameters: {
@@ -287,7 +284,6 @@ BLS12381_SHA256.fixtures = [{
     verified: true
   }
 }, {
-  only: true,
   name: 'valid half prover committed messages and half signer messages revealed proof',
   operation: 'NymProofGenAndProofVerify',
   parameters: {
@@ -328,7 +324,6 @@ BLS12381_SHA256.fixtures = [{
     verified: true
   }
 }, {
-  only: true,
   name: 'valid no prover committed messages and half signer messages revealed proof',
   operation: 'NymProofGenAndProofVerify',
   parameters: {
@@ -365,7 +360,6 @@ BLS12381_SHA256.fixtures = [{
     verified: true
   }
 }, {
-  only: true,
   name: 'valid half prover committed messages and no signer messages revealed proof',
   operation: 'NymProofGenAndProofVerify',
   parameters: {
@@ -400,7 +394,6 @@ BLS12381_SHA256.fixtures = [{
     verified: true
   }
 }, {
-  only: true,
   name: 'valid no prover committed messages and no signer messages revealed proof',
   operation: 'NymProofGenAndProofVerify',
   parameters: {

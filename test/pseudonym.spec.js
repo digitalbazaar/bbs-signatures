@@ -1,24 +1,15 @@
 /*!
  * Copyright (c) 2023-2025 Digital Bazaar, Inc. All rights reserved.
  */
-import {BlindSign, BlindVerify} from '../lib/bbs/blind/interface.js';
 import {
   BlindSignWithNym, BlindVerifyWithNym,
-  CalculatePseudonym, NymCommit,
-  ProofGenWithPseudonym, ProofVerifyWithPseudonym
+  NymCommit, ProofGenWithPseudonym, ProofVerifyWithPseudonym
 } from '../lib/bbs/pseudonym/interface.js';
 import chai from 'chai';
 import {CIPHERSUITES_TEST_VECTORS} from './pseudonym-test-vectors.js';
-import {mocked_calculate_random_scalars} from '../lib/bbs/util.js';
 chai.should();
 
 const OPERATIONS = {
-  CalculatePseudonym,
-  CommitAndBlindSignWithNymAndBlindVerify,
-  PidVerifyAndProofGenWithPseudonym,
-  ProofVerifyWithPseudonym,
-  // FIXME: remove `PidSignAndVerify`
-  PidSignAndVerify,
   NymCommit,
   NymCommitAndBlindSignWithNymAndBlindVerify,
   NymProofGenAndProofVerify
@@ -48,10 +39,6 @@ describe.only('Pseudonym BBS test vectors', () => {
     });
   }
 });
-
-// FIXME: remove me
-async function PidSignAndVerify() {}
-async function CommitAndBlindSignWithNymAndBlindVerify() {}
 
 // runs `NymCommit`, `BlindSign`, then `BlindVerify`
 async function NymCommitAndBlindSignWithNymAndBlindVerify({
@@ -151,38 +138,4 @@ async function NymProofGenAndProofVerify({
     api_id, ciphersuite
   });
   return {proof, verified};
-}
-
-// runs `BlindVerify` w/`pid` and `ProofGenWithPseudonym`
-async function PidVerifyAndProofGenWithPseudonym({
-  PK,
-  signature,
-  verifier_id, pseudonym, pid,
-  header = new Uint8Array(),
-  ph = new Uint8Array(),
-  messages = [], disclosed_indexes,
-  secret_prover_blind,
-  signer_blind,
-  api_id, ciphersuite,
-  proof_mocked_random_scalars_options
-} = {}) {
-  const verifyResult = await BlindVerify({
-    PK, signature, header,
-    messages: [...messages, pid], committed_messages: [],
-    secret_prover_blind,
-    signer_blind,
-    api_id, ciphersuite
-  });
-  verifyResult.should.equal(true);
-  const x = await ProofGenWithPseudonym({
-  //return ProofGenWithPseudonym({
-    PK, signature,
-    pseudonym, verifier_id, pid,
-    header, ph,
-    messages, disclosed_indexes,
-    api_id, ciphersuite,
-    mocked_random_scalars_options: proof_mocked_random_scalars_options
-  });
-  console.log('x', Buffer.from(x).toString('hex'));
-  return x;
 }
