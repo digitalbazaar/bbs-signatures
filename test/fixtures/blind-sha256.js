@@ -79,8 +79,6 @@ BLS12381_SHA256.fixtures = [{
   operation: 'Commit',
   parameters: {
     committed_messages: [],
-    api_id: TEXT_ENCODER.encode(
-      BLS12381_SHA256.ciphersuite.ciphersuite_id + 'BLIND_H2G_HM2S_'),
     mocked_random_scalars_options: {
       seed: BLS12381_SHA256.mocked_random_scalars_options.seed,
       dst: TEXT_ENCODER.encode('BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_COMMIT_MOCK_RANDOM_SCALARS_DST_'),
@@ -96,8 +94,6 @@ BLS12381_SHA256.fixtures = [{
   operation: 'Commit',
   parameters: {
     committed_messages: COMMITTED_MESSAGES.slice(),
-    api_id: TEXT_ENCODER.encode(
-      BLS12381_SHA256.ciphersuite.ciphersuite_id + 'BLIND_H2G_HM2S_'),
     mocked_random_scalars_options: {
       seed: BLS12381_SHA256.mocked_random_scalars_options.seed,
       dst: TEXT_ENCODER.encode('BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_COMMIT_MOCK_RANDOM_SCALARS_DST_'),
