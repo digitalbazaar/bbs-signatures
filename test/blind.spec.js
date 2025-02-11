@@ -15,7 +15,7 @@ const OPERATIONS = {
   BlindProofVerify
 };
 
-describe.only('Blind BBS test vectors', () => {
+describe('Blind BBS test vectors', () => {
   const only = CIPHERSUITES_TEST_VECTORS.filter(tv => {
     return tv.fixtures.some(({only}) => only);
   });

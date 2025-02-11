@@ -15,7 +15,7 @@ const OPERATIONS = {
   NymProofGenAndProofVerify
 };
 
-describe.only('Pseudonym BBS test vectors', () => {
+describe('Pseudonym BBS test vectors', () => {
   const only = CIPHERSUITES_TEST_VECTORS.filter(tv => {
     return tv.fixtures.some(({only}) => only);
   });
