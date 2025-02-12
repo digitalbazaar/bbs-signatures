@@ -69,7 +69,7 @@ async function BlindVerifyAndBlindProofGen({
   header = new Uint8Array(),
   ph = new Uint8Array(),
   messages = [], disclosed_indexes,
-  committed_messages, disclosed_commitment_indexes,
+  committed_messages, disclosed_committed_indexes,
   secret_prover_blind,
   ciphersuite,
   proof_mocked_random_scalars_options
@@ -85,7 +85,7 @@ async function BlindVerifyAndBlindProofGen({
     PK, signature,
     header, ph,
     messages, disclosed_indexes,
-    committed_messages, disclosed_commitment_indexes,
+    committed_messages, disclosed_committed_indexes,
     secret_prover_blind,
     ciphersuite,
     mocked_random_scalars_options: proof_mocked_random_scalars_options

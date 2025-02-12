@@ -14,9 +14,6 @@ export const BLS12381_SHAKE256 = {
   ciphersuite: CIPHERSUITES.BLS12381_SHAKE256,
   SK: h2s('60e55110f76883a13d030b2f6bd11883422d5abde717569fc0731f51237169fc'),
   PK: h2b('a820f230f6ae38503b86c70dc50b61c58a77e45c39ab25c0652bbaa8fa136f2851bd4781c9dcde39fc9d1d52c9e60268061e7d7632171d91aa8d460acee0e96f1e7c4cfb12d3ff9ab5d5dc91c277db75c845d649ef3c4f63aebc364cd55ded0c'),
-  // FIXME: remove me
-  // SK: h2s('2eee0f60a8a3a8bec0ee942bfd46cbdae9a0738ee68f5a64e7238311cf09a079'),
-  // PK: h2b('92d37d1d6cd38fea3a873953333eab23a4c0377e3e049974eb62bd45949cdeb18fb0490edcd4429adff56e65cbce42cf188b31bddbd619e419b99c2c41b38179eb001963bc3decaae0d9f702c7a8c004f207f46c734a5eae2e8e82833f3e7ea5'),
   commit_mocked_random_scalars_options: {
     seed: h2b('332e313431353932363533353839373933323338343632363433333833323739'),
     dst: TEXT_ENCODER.encode('BBS_BLS12381G1_XOF:SHAKE-256_SSWU_RO_H2G_HM2S_COMMIT_MOCK_RANDOM_SCALARS_DST_')
@@ -157,7 +154,7 @@ BLS12381_SHAKE256.fixtures = [{
     disclosed_messages: MESSAGES.slice(),
     disclosed_indexes: [...MESSAGES.keys()],
     disclosed_committed_messages: COMMITTED_MESSAGES.slice(),
-    disclosed_commitment_indexes: [...COMMITTED_MESSAGES.keys()],
+    disclosed_committed_indexes: [...COMMITTED_MESSAGES.keys()],
     mocked_random_scalars_options:
       BLS12381_SHAKE256.proof_mocked_random_scalars_options
   },
@@ -189,7 +186,7 @@ BLS12381_SHAKE256.fixtures = [{
       COMMITTED_MESSAGES[2],
       COMMITTED_MESSAGES[4]
     ],
-    disclosed_commitment_indexes: [0, 2, 4],
+    disclosed_committed_indexes: [0, 2, 4],
     mocked_random_scalars_options:
       BLS12381_SHAKE256.proof_mocked_random_scalars_options
   },
@@ -223,7 +220,7 @@ BLS12381_SHAKE256.fixtures = [{
     ],
     disclosed_indexes: [0, 2, 4, 6, 8],
     disclosed_committed_messages: COMMITTED_MESSAGES.slice(),
-    disclosed_commitment_indexes: [...COMMITTED_MESSAGES.keys()],
+    disclosed_committed_indexes: [...COMMITTED_MESSAGES.keys()],
     mocked_random_scalars_options:
       BLS12381_SHAKE256.proof_mocked_random_scalars_options
   },
@@ -261,7 +258,7 @@ BLS12381_SHAKE256.fixtures = [{
       COMMITTED_MESSAGES[2],
       COMMITTED_MESSAGES[4]
     ],
-    disclosed_commitment_indexes: [0, 2, 4],
+    disclosed_committed_indexes: [0, 2, 4],
     mocked_random_scalars_options:
       BLS12381_SHAKE256.proof_mocked_random_scalars_options
   },
@@ -295,7 +292,7 @@ BLS12381_SHAKE256.fixtures = [{
     ],
     disclosed_indexes: [0, 2, 4, 6, 8],
     disclosed_committed_messages: [],
-    disclosed_commitment_indexes: [],
+    disclosed_committed_indexes: [],
     mocked_random_scalars_options:
       BLS12381_SHAKE256.proof_mocked_random_scalars_options
   },
@@ -327,7 +324,7 @@ BLS12381_SHAKE256.fixtures = [{
       COMMITTED_MESSAGES[2],
       COMMITTED_MESSAGES[4]
     ],
-    disclosed_commitment_indexes: [0, 2, 4],
+    disclosed_committed_indexes: [0, 2, 4],
     mocked_random_scalars_options:
       BLS12381_SHAKE256.proof_mocked_random_scalars_options
   },
@@ -355,7 +352,7 @@ BLS12381_SHAKE256.fixtures = [{
     disclosed_messages: [],
     disclosed_indexes: [],
     disclosed_committed_messages: [],
-    disclosed_commitment_indexes: [],
+    disclosed_committed_indexes: [],
     mocked_random_scalars_options:
       BLS12381_SHAKE256.proof_mocked_random_scalars_options
   },
