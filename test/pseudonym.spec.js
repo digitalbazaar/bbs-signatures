@@ -99,7 +99,7 @@ async function NymProofGenAndProofVerify({
   context_id,
   L,
   disclosed_messages, disclosed_indexes,
-  disclosed_committed_messages, disclosed_commitment_indexes,
+  disclosed_committed_messages, disclosed_committed_indexes,
   api_id,
   ciphersuite,
   mocked_random_scalars_options
@@ -121,7 +121,7 @@ async function NymProofGenAndProofVerify({
     header, ph,
     nym_secret, context_id,
     messages, disclosed_indexes,
-    committed_messages, disclosed_commitment_indexes,
+    committed_messages, disclosed_committed_indexes,
     secret_prover_blind,
     api_id, ciphersuite,
     mocked_random_scalars_options
@@ -137,7 +137,7 @@ async function NymProofGenAndProofVerify({
     disclosed_messages,
     disclosed_committed_messages,
     disclosed_indexes,
-    disclosed_commitment_indexes,
+    disclosed_committed_indexes,
     api_id, ciphersuite
   });
   return {proof, verified};

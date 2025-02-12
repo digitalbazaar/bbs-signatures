@@ -230,7 +230,7 @@ BLS12381_SHAKE256.fixtures = [{
     messages: MESSAGES.slice(),
     disclosed_indexes: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
     committed_messages: COMMITTED_MESSAGES.slice(),
-    disclosed_commitment_indexes: [0, 1, 2, 3, 4],
+    disclosed_committed_indexes: [0, 1, 2, 3, 4],
     secret_prover_blind: h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649'),
     proof_mocked_random_scalars_options: {
       ...BLS12381_SHAKE256.proof_mocked_random_scalars_options,
@@ -249,7 +249,7 @@ BLS12381_SHAKE256.fixtures = [{
     messages: MESSAGES.slice(),
     disclosed_indexes: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
     committed_messages: COMMITTED_MESSAGES.slice(),
-    disclosed_commitment_indexes: [0, 2, 4],
+    disclosed_committed_indexes: [0, 2, 4],
     secret_prover_blind: h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649'),
     proof_mocked_random_scalars_options: {
       ...BLS12381_SHAKE256.proof_mocked_random_scalars_options,
@@ -268,7 +268,7 @@ BLS12381_SHAKE256.fixtures = [{
     messages: MESSAGES.slice(),
     disclosed_indexes: [0, 2, 4, 6, 8],
     committed_messages: COMMITTED_MESSAGES.slice(),
-    disclosed_commitment_indexes: [0, 1, 2, 3, 4],
+    disclosed_committed_indexes: [0, 1, 2, 3, 4],
     secret_prover_blind: h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649'),
     proof_mocked_random_scalars_options: {
       ...BLS12381_SHAKE256.proof_mocked_random_scalars_options,
@@ -287,7 +287,7 @@ BLS12381_SHAKE256.fixtures = [{
     messages: MESSAGES.slice(),
     disclosed_indexes: [0, 2, 4, 6, 8],
     committed_messages: COMMITTED_MESSAGES.slice(),
-    disclosed_commitment_indexes: [0, 2, 4],
+    disclosed_committed_indexes: [0, 2, 4],
     secret_prover_blind: h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649'),
     proof_mocked_random_scalars_options: {
       ...BLS12381_SHAKE256.proof_mocked_random_scalars_options,
@@ -306,7 +306,7 @@ BLS12381_SHAKE256.fixtures = [{
     messages: MESSAGES.slice(),
     disclosed_indexes: [0, 2, 4, 6, 8],
     committed_messages: COMMITTED_MESSAGES.slice(),
-    disclosed_commitment_indexes: [],
+    disclosed_committed_indexes: [],
     secret_prover_blind: h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649'),
     proof_mocked_random_scalars_options: {
       ...BLS12381_SHAKE256.proof_mocked_random_scalars_options,
@@ -325,7 +325,7 @@ BLS12381_SHAKE256.fixtures = [{
     messages: MESSAGES.slice(),
     disclosed_indexes: [],
     committed_messages: COMMITTED_MESSAGES.slice(),
-    disclosed_commitment_indexes: [0, 2, 4],
+    disclosed_committed_indexes: [0, 2, 4],
     secret_prover_blind: h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649'),
     proof_mocked_random_scalars_options: {
       ...BLS12381_SHAKE256.proof_mocked_random_scalars_options,
@@ -344,7 +344,7 @@ BLS12381_SHAKE256.fixtures = [{
     messages: MESSAGES.slice(),
     disclosed_indexes: [],
     committed_messages: COMMITTED_MESSAGES.slice(),
-    disclosed_commitment_indexes: [],
+    disclosed_committed_indexes: [],
     secret_prover_blind: h2s('41fb2f74c30256398c927a262602b5ac3ebc6f84d9169476f8fcb1525c93b649'),
     proof_mocked_random_scalars_options: {
       ...BLS12381_SHAKE256.proof_mocked_random_scalars_options,
@@ -363,7 +363,7 @@ BLS12381_SHAKE256.fixtures = [{
     messages: MESSAGES.slice(),
     disclosed_indexes: [0, 2, 4, 6, 8],
     committed_messages: [],
-    disclosed_commitment_indexes: [],
+    disclosed_committed_indexes: [],
     secret_prover_blind: h2s(''),
     proof_mocked_random_scalars_options: {
       ...BLS12381_SHAKE256.proof_mocked_random_scalars_options,

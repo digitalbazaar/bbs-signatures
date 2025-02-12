@@ -178,7 +178,7 @@ BLS12381_SHA256.fixtures = [{
     disclosed_messages: MESSAGES.slice(),
     disclosed_indexes: [...MESSAGES.keys()],
     disclosed_committed_messages: COMMITTED_MESSAGES.slice(),
-    disclosed_commitment_indexes: [...COMMITTED_MESSAGES.keys()],
+    disclosed_committed_indexes: [...COMMITTED_MESSAGES.keys()],
     mocked_random_scalars_options:
       BLS12381_SHA256.proof_mocked_random_scalars_options
   },
@@ -210,7 +210,7 @@ BLS12381_SHA256.fixtures = [{
       COMMITTED_MESSAGES[2],
       COMMITTED_MESSAGES[4]
     ],
-    disclosed_commitment_indexes: [0, 2, 4],
+    disclosed_committed_indexes: [0, 2, 4],
     mocked_random_scalars_options:
       BLS12381_SHA256.proof_mocked_random_scalars_options
   },
@@ -244,7 +244,7 @@ BLS12381_SHA256.fixtures = [{
     ],
     disclosed_indexes: [0, 2, 4, 6, 8],
     disclosed_committed_messages: COMMITTED_MESSAGES.slice(),
-    disclosed_commitment_indexes: [...COMMITTED_MESSAGES.keys()],
+    disclosed_committed_indexes: [...COMMITTED_MESSAGES.keys()],
     mocked_random_scalars_options:
       BLS12381_SHA256.proof_mocked_random_scalars_options
   },
@@ -282,7 +282,7 @@ BLS12381_SHA256.fixtures = [{
       COMMITTED_MESSAGES[2],
       COMMITTED_MESSAGES[4]
     ],
-    disclosed_commitment_indexes: [0, 2, 4],
+    disclosed_committed_indexes: [0, 2, 4],
     mocked_random_scalars_options:
       BLS12381_SHA256.proof_mocked_random_scalars_options
   },
@@ -316,7 +316,7 @@ BLS12381_SHA256.fixtures = [{
     ],
     disclosed_indexes: [0, 2, 4, 6, 8],
     disclosed_committed_messages: [],
-    disclosed_commitment_indexes: [],
+    disclosed_committed_indexes: [],
     mocked_random_scalars_options:
       BLS12381_SHA256.proof_mocked_random_scalars_options
   },
@@ -348,7 +348,7 @@ BLS12381_SHA256.fixtures = [{
       COMMITTED_MESSAGES[2],
       COMMITTED_MESSAGES[4]
     ],
-    disclosed_commitment_indexes: [0, 2, 4],
+    disclosed_committed_indexes: [0, 2, 4],
     mocked_random_scalars_options:
       BLS12381_SHA256.proof_mocked_random_scalars_options
   },
@@ -376,7 +376,7 @@ BLS12381_SHA256.fixtures = [{
     disclosed_messages: [],
     disclosed_indexes: [],
     disclosed_committed_messages: [],
-    disclosed_commitment_indexes: [],
+    disclosed_committed_indexes: [],
     mocked_random_scalars_options:
       BLS12381_SHA256.proof_mocked_random_scalars_options
   },
