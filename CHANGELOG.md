@@ -1,5 +1,10 @@
 # @digitalbazaar/bbs-signatures ChangeLog
 
+## 3.1.0 - 2026-06-dd
+
+### Changed
+- Update @noble/hashes deprecated sha256 import statement.
+
 ## 3.0.0 - 2024-08-19
 
 ### Changed
