@@ -2,6 +2,9 @@
 
 ## 3.1.0 - 2026-06-dd
 
+### Added
+- Add `@noble/hashes@2.2.0` dependency.
+
 ### Changed
 - Update @noble/hashes deprecated sha256 import statement.
 
