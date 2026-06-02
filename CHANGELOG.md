@@ -1,6 +1,6 @@
 # @digitalbazaar/bbs-signatures ChangeLog
 
-## 3.1.0 - 2026-06-dd
+## 3.1.0 - 2026-06-01
 
 ### Changed
 - Update `@noble/curves` and `@noble/hashes` libraries.
