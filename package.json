@@ -9,7 +9,11 @@
   },
   "license": "BSD-3-Clause",
   "type": "module",
-  "exports": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./blind": "./lib/bbs/blind/interface.js",
+    "./pseudonym": "./lib/bbs/pseudonym/interface.js"
+  },
   "browser": {
     "./lib/crypto.js": "./lib/crypto-browser.js"
   },
