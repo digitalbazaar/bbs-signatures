@@ -1,5 +1,16 @@
 # @digitalbazaar/bbs-signatures ChangeLog
 
+## 3.1.1 - 2026-mm-dd
+
+### Fixed
+- Fix `BLS12-381-SHAKE-256` `hash_to_curve_g1` with `@noble/curves` 2.3.0+
+  (allowed by the `^2.2.0` range). Since 2.3.0, `hashToCurve()` only honors a
+  per-call `DST` (as its `H2CDSTOpts` type always declared), so the suite's
+  `expand: 'xof'`, `hash: shake256` and `k` options were silently ignored and
+  SHA-256 XMD was used instead, breaking every SHAKE-256 signature and proof.
+  `hash_to_curve` is now composed from `hash_to_field` (with
+  `expand_message_xof`) and `mapToCurve()`; works with 2.2.0 and 2.4.0.
+
 ## 3.1.0 - 2026-06-01
 
 ### Changed
