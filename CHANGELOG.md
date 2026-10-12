@@ -1,5 +1,37 @@
 # @digitalbazaar/bbs-signatures ChangeLog
 
+## 3.2.0 - 2026-mm-dd
+
+### Changed
+- **NOTE**: Update the (not yet exported) pseudonym implementation to the
+  current BBS per Verifier Linkability draft (cfrg/draft-irtf-cfrg-bbs-
+  pseudonyms, commit `fcbba956`): `nym_secrets` is a vector of scalars
+  (`prover_nyms` / `nym_secrets` parameters replace `prover_nym` /
+  `nym_secret`); the signer's entropy is added to the last element; the
+  vector's length is bound into the header (`length_nym_vector`); the
+  pseudonym is computed from a polynomial in
+  `hash_to_scalar(context_id, api_id || "VECT_NYM_SECRETS")`; the proof
+  challenge includes the length-prefixed `context_id`.
+
+### Added
+- Tests that run the Blind BBS and pseudonym draft repositories' own
+  fixtures, and `scripts/update-spec-fixtures.js` to refresh them.
+
+### Removed
+- Transcribed test vectors from the previous (single `nym_secret`)
+  pseudonym draft, superseded by the draft repository's fixtures.
+
+## 3.1.1 - 2026-mm-dd
+
+### Fixed
+- Fix `BLS12-381-SHAKE-256` `hash_to_curve_g1` with `@noble/curves` 2.3.0+
+  (allowed by the `^2.2.0` range). Since 2.3.0, `hashToCurve()` only honors a
+  per-call `DST` (as its `H2CDSTOpts` type always declared), so the suite's
+  `expand: 'xof'`, `hash: shake256` and `k` options were silently ignored and
+  SHA-256 XMD was used instead, breaking every SHAKE-256 signature and proof.
+  `hash_to_curve` is now composed from `hash_to_field` (with
+  `expand_message_xof`) and `mapToCurve()`; works with 2.2.0 and 2.4.0.
+
 ## 3.1.0 - 2026-06-01
 
 ### Changed
